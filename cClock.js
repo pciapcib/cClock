@@ -2,23 +2,18 @@ cClock();
 
 function cClock() {
     var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
 
-    if (!canvas) {
+    if (!context) {
         return false;
     }
 
-    var context = canvas.getContext("2d");
-
     context.strokeStyle = "#4d4d4d";
     context.fillStyle = "#f2f2f2";
+
     var twoPi = 2 * Math.PI;
 
-    var date = new Date();
-    var hour = date.getHours();
-    var minute = date.getMinutes();
-    var second = date.getSeconds();
-
-    var radius = 200;
+    var radius = 199;
 
     var hourLenth = radius * 0.85 / 1.3;
     var minuteLenth = radius * 0.85;
@@ -26,51 +21,77 @@ function cClock() {
 
     context.translate(200, 200);
 
-    startClock();
+    // createDate();
 
-    function drawCircle(radius) {
-        context.beginPath();
+    rotateClock();
 
-        context.arc(0, 0, radius, 0, twoPi, false);
+    function rotateClock() {
+        currentTime = dateNow();
+        // currentTime = dateNowTest();
 
-        context.stroke();
-    }
+        var hourCoord = calcCoordinate(currentTime.hour, hourLenth, true);
 
-    function startClock() {
-        var day = new Date();
+        var minuteCoord = calcCoordinate(currentTime.minute, minuteLenth, false);
 
-        var hourCoord = calcCoordinate(hour * 5, hourLenth);
-        var minuteCoord = calcCoordinate(minute, minuteLenth);
-        var secondCoord = calcCoordinate(second, secondLenth);
+        var secondCoord = calcCoordinate(currentTime.second, secondLenth);
 
         drawClock(hourCoord, minuteCoord, secondCoord);
         console.clear();
-        console.log(hour + ":" + minute + ":" + second);
-        console.log(day);
-
-        if (second === 59) {
-            second = 0;
-            minute++;
-        } else {
-            second++;
-        }
-
-        if (minute === 60) {
-            minute = 0;
-            hour++;
-        }
-
-        if (hour == 24) {
-            hour = 0;
-        }
+        console.log(currentTime.hour + ":" + currentTime.minute + ":" + currentTime.second);
 
         setTimeout(function() {
-            startClock();
+            rotateClock();
         }, 1000);
     }
 
+    function dateNow() {
+        var date = new Date();
+
+        var time = {
+            hour: date.getHours(),
+            minute: date.getMinutes(),
+            second: date.getSeconds()
+        };
+
+        return time;
+    }
+
+    function calcCoordinate(time, handLenth, isHour) {
+        if (isHour) {
+            if (time >= 12) {
+                time -= 12;
+            }
+            time *= 5;
+        }
+
+        var offsetR = correctRadian(isHour);
+
+        var radian = (time / 60 + 1 / 4) * twoPi;
+        radian += offsetR;
+
+        var x = -Math.round(handLenth * Math.cos(radian));
+        var y = -Math.round(handLenth * Math.sin(radian));
+
+        return [x, y];
+    }
+
+    function correctRadian(isHour) {
+        var offsetR;
+
+        if (isHour) {
+            offsetR = (currentTime.minute / 60) * (1 / 12) * twoPi;
+        } else {
+            if (isHour === false) {
+                offsetR = (currentTime.second / 60) * (1 / 60) * twoPi;
+            } else {
+                offsetR = 0;
+            }
+        }
+
+        return offsetR;
+    }
+
     function drawClock(hour, minute, second) {
-        context.clearRect(-200, -200, 400, 400);
         drawCircle(radius);
 
         context.moveTo(0, 0);
@@ -85,12 +106,49 @@ function cClock() {
         context.stroke();
     }
 
-    function calcCoordinate(time, handLenth) {
-        var radian = (time / 60 + 1 / 4) * twoPi;
-        var x = -Math.round(handLenth * Math.cos(radian));
-        var y = -Math.round(handLenth * Math.sin(radian));
+    function drawCircle(radius) {
+        context.clearRect(-200, -200, 400, 400);
 
-        var coordinate = [x, y];
-        return coordinate;
+        context.beginPath();
+
+        context.arc(0, 0, radius, 0, twoPi, false);
+
+        context.stroke();
     }
+
+    function createDate() {
+        dateTest = new Date();
+
+        hourTest = dateTest.getHours();
+        minuteTest = dateTest.getMinutes();
+        secondTest = dateTest.getSeconds();
+
+    }
+
+    function dateNowTest() {
+        if (secondTest == 59) {
+            secondTest = 0;
+            minuteTest++;
+        } else {
+            secondTest++;
+        }
+
+        if (minuteTest == 60) {
+            minuteTest = 0;
+            hourTest++;
+        }
+
+        if (hourTest == 24) {
+            hourTest = 0;
+        }
+
+        var timeTest = {
+            hour: hourTest,
+            minute: minuteTest,
+            second: secondTest
+        };
+
+        return timeTest;
+    }
+
 }
