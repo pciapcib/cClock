@@ -6,7 +6,7 @@ A flat and dynamic clock
 
 * [Quick start](#quick-start)
 * [Arguments](#arguments)
-* [Attentions](#attentions)
+* [Options](#options)
 * [License](#license)
 
 ###中文说明
@@ -56,7 +56,7 @@ cClock(argument, argument, argument);
 | suffixName | string | "_big" | The suffix name of big image. |
 | imgType | string | the zoomed image type | The type of big image. The default option is recommended. |
 
-##Attentions
+##Options
 
 1. 
 
@@ -64,7 +64,7 @@ cClock(argument, argument, argument);
 
 Licensed under the [MIT License](https://github.com/pciapcib/cClock/blob/master/license.md).
 
-<br><br>
+--------
 
 ###使用说明
 
@@ -86,13 +86,26 @@ cClock();
 
 即可实现默认效果。
 
-###配置参数
+###配置选项
 
-自定义cClock时，在函数中传入参数，可选参数列于下表。
+自定义cClock时，在函数中传入一个对象，可选参数列于下表。
 
 ```javascript
 cClock(argument, argument, argument);
 ```
+
+<!-- 画布宽高 -->
+指针颜色
+没有边框
+边框颜色
+背景色
+
+时针长度
+分针长度
+秒针长度
+时针刻度
+分针刻度
+
 
 | 选项 | 类型 | 默认值 | 描述 |
 |:---:|:---:|:---:|:---:|
