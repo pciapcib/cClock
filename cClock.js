@@ -1,6 +1,17 @@
-cClock();
+cClock({
+    handWidth: 6,
+    handColor: "#4d4d4d",
+    noBorder: true,
+    // borderWidth: 22,
+    // borderColor: "#4d4d4d",
+    bgColor: "#f2f2f2",
+    // hourProp: 0.2,
+    // minuitProp: 0.2,
+    // secondProp: 0.2,
 
-function cClock() {
+});
+
+function cClock(options) {
     var canvas = document.getElementById("canvas");
 
     if (!canvas) {
@@ -9,8 +20,10 @@ function cClock() {
 
     var context = canvas.getContext("2d");
 
-    var width = canvas.offsetWidth;
-    context.translate(width / 2, width / 2);
+    var canvasWidth = canvas.offsetWidth;
+    context.translate(canvasWidth / 2, canvasWidth / 2);
+
+    var width = canvasWidth - (options.borderWidth || 2);
 
     var twoPi = 2 * Math.PI,
         clockSize = calcSize(width),
@@ -26,9 +39,9 @@ function cClock() {
 
         var size = {
             radius: radius,
-            hour: radius * 0.85 / 1.3,
-            minute: radius * 0.85,
-            second: radius * 0.8
+            hour: radius * (options.hourProp || 0.65),
+            minute: radius * (options.minuitProp || 0.85),
+            second: radius * (options.secondProp || 0.8)
         }
 
         return size;
@@ -100,35 +113,41 @@ function cClock() {
     }
 
     function drawClock(hour, minute, second) {
-        context.clearRect(-width / 2, -width / 2, width, width);
+        context.clearRect(-canvasWidth / 2, -canvasWidth / 2, canvasWidth, canvasWidth);
 
         drawCircle(clockSize.radius);
 
-        context.beginPath();
-
-        context.moveTo(0, 0);
-        context.lineTo(hour[0], hour[1]);
-
-        context.moveTo(0, 0);
-        context.lineTo(minute[0], minute[1]);
-
-        context.moveTo(0, 0);
-        context.lineTo(second[0], second[1]);
-
-        context.strokeStyle = "#4d4d4d";
-        context.stroke();
+        drawHand();
 
         function drawCircle(radius) {
-
             context.beginPath();
 
-            context.strokeStyle = "#f2f2f2";
             context.arc(0, 0, radius, 0, twoPi, false);
 
+            context.lineWidth = options.borderWidth || 2;
+            context.strokeStyle = options.noBorder ? options.bgColor : (options.borderColor || "#000");
             context.stroke();
 
-            context.fillStyle = "#f2f2f2";
+            context.fillStyle = options.bgColor || "#fff";
             context.fill();
+        }
+
+        function drawHand() {
+            context.beginPath();
+
+            context.moveTo(0, 0);
+            context.lineTo(hour[0], hour[1]);
+
+            context.moveTo(0, 0);
+            context.lineTo(minute[0], minute[1]);
+
+            context.moveTo(0, 0);
+            context.lineTo(second[0], second[1]);
+
+            context.lineWidth = options.handWidth || 2;
+            context.lineCap = "round";
+            context.strokeStyle = options.handColor || "#000";
+            context.stroke();
         }
     }
 
