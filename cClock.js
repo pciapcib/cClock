@@ -1,14 +1,27 @@
 cClock({
-    handWidth: 6,
-    handColor: "#4d4d4d",
-    noBorder: true,
-    // borderWidth: 22,
-    // borderColor: "#4d4d4d",
-    bgColor: "#f2f2f2",
-    // hourProp: 0.2,
-    // minuitProp: 0.2,
-    // secondProp: 0.2,
-
+    // hourLength: 0.9,
+    // minuteLength: 0.9,
+    // secondLength: 0.9,
+    // handWidth: 8,
+    // handColor: "#777",
+    // handType: "butt",
+    // noCenter: true,
+    // centerRadius: 12,
+    // noHandTail: true,
+    // hourTailLength: 0.4,
+    // minuteTailLength: 0.4,
+    // secondTailLength: 0.4,
+    // noBorder: true,
+    // borderWidth: 26,
+    // borderColor: "#ccc",
+    // bgColor: "#aaa",
+    // noDial: true,
+    // noMinuteDial: true,
+    // hourDialLength: 0.2,
+    // hourDialWidth: 6,
+    // minuteDialLength: 0.1,
+    // minuteDialWidth: 2,
+    // dialColor: "#f2f2f2"
 });
 
 function cClock(options) {
@@ -39,31 +52,41 @@ function cClock(options) {
 
         var size = {
             radius: radius,
-            hour: radius * (options.hourProp || 0.65),
-            minute: radius * (options.minuitProp || 0.85),
-            second: radius * (options.secondProp || 0.8)
-        }
+
+            hourLength: radius * (options.hourLength || 0.65),
+            minuteLength: radius * (options.minuteLength || 0.85),
+            secondLength: radius * (options.secondLength || 0.8),
+
+            hourDialLength: radius * (1 - (options.hourDialLength || 0.15)),
+            minuteDialLength: radius * (1 - (options.minuteDialLength || 0.08))
+        };
+
+        size.hourTailLength = options.noHandTail ? null : radius * (options.hourTailLength || 0.2);
+        size.minuteTailLength = options.noHandTail ? null : radius * (options.minuteTailLength || 0.2);
+        size.secondTailLength = options.noHandTail ? null : radius * (options.secondTailLength || 0.2);
 
         return size;
     }
 
     function rotateClock() {
         // currentTime = dateNow();
-        currentTime = dateNowTest();
+        currentTime = dateNowTest(10,8,30);
 
-        var hourCoord = calcCoordinate(currentTime.hour, clockSize.hour, true);
+        var hourCoord = calcCoordinate(currentTime.hour, clockSize.hourLength, true);
+        var minuteCoord = calcCoordinate(currentTime.minute, clockSize.minuteLength, false);
+        var secondCoord = calcCoordinate(currentTime.second, clockSize.secondLength);
 
-        var minuteCoord = calcCoordinate(currentTime.minute, clockSize.minute, false);
+        var hourTailCoord = calcCoordinate(currentTime.hour, clockSize.hourTailLength, true);
+        var minuteTailCoord = calcCoordinate(currentTime.minute, clockSize.minuteTailLength, false);
+        var secondTailCoord = calcCoordinate(currentTime.second, clockSize.secondTailLength);
 
-        var secondCoord = calcCoordinate(currentTime.second, clockSize.second);
-
-        drawClock(hourCoord, minuteCoord, secondCoord);
+        drawClock(hourCoord, minuteCoord, secondCoord, hourTailCoord, minuteTailCoord, secondTailCoord);
         // console.clear();
         // console.log(currentTime.hour + ":" + currentTime.minute + ":" + currentTime.second);
 
         setTimeout(function() {
             rotateClock();
-        }, 1000);
+        }, 100);
     }
 
     function dateNow() {
@@ -112,10 +135,12 @@ function cClock(options) {
         }
     }
 
-    function drawClock(hour, minute, second) {
+    function drawClock(hourCoord, minuteCoord, secondCoord, hourTailCoord, minuteTailCoord, secondTailCoord) {
         context.clearRect(-canvasWidth / 2, -canvasWidth / 2, canvasWidth, canvasWidth);
 
         drawCircle(clockSize.radius);
+
+        options.noDial || drawDial();
 
         drawHand();
 
@@ -130,28 +155,80 @@ function cClock(options) {
 
             context.fillStyle = options.bgColor || "#fff";
             context.fill();
+
+            if (!options.noCenter) {
+                context.beginPath();
+                context.arc(0, 0, options.centerRadius || 5, 0, twoPi, false);
+                context.fillStyle = options.handColor || "#000";
+                context.fill();
+            };
+        }
+
+        function drawDial() {
+            context.beginPath();
+
+            var i, hourDialStart, hourDialEnd;
+
+            for (i = 0; i < 60; i += 5) {
+                hourDialStart = calcCoordinate(i, clockSize.hourDialLength);
+                hourDialEnd = calcCoordinate(i, clockSize.radius);
+
+                context.moveTo(hourDialStart[0], hourDialStart[1]);
+                context.lineTo(hourDialEnd[0], hourDialEnd[1]);
+            }
+
+            context.lineCap = "butt";
+            context.lineWidth = options.hourDialWidth || 2;
+            context.strokeStyle = options.dialColor || "#4d4d4d";
+            context.stroke();
+
+            if (!options.noMinuteDial) {
+                var minuteDialStart, minuteDialEnd;
+
+                for (i = 0; i < 60; i++) {
+                    minuteDialStart = calcCoordinate(i, clockSize.minuteDialLength);
+                    minuteDialEnd = calcCoordinate(i, clockSize.radius);
+
+                    context.moveTo(minuteDialStart[0], minuteDialStart[1]);
+                    context.lineTo(minuteDialEnd[0], minuteDialEnd[1]);
+                }
+
+                context.lineWidth = options.minuteDialWidth || 2;
+                context.stroke();
+            }
         }
 
         function drawHand() {
             context.beginPath();
 
-            context.moveTo(0, 0);
-            context.lineTo(hour[0], hour[1]);
+            context.moveTo(-hourTailCoord[0], -hourTailCoord[1]);
+            context.lineTo(hourCoord[0], hourCoord[1]);
 
-            context.moveTo(0, 0);
-            context.lineTo(minute[0], minute[1]);
+            context.moveTo(-minuteTailCoord[0], -minuteTailCoord[1]);
+            context.lineTo(minuteCoord[0], minuteCoord[1]);
 
-            context.moveTo(0, 0);
-            context.lineTo(second[0], second[1]);
+            context.moveTo(-secondTailCoord[0], -secondTailCoord[1]);
+            context.lineTo(secondCoord[0], secondCoord[1]);
 
             context.lineWidth = options.handWidth || 2;
-            context.lineCap = "round";
+            context.lineCap = options.handType || "round";
             context.strokeStyle = options.handColor || "#000";
             context.stroke();
         }
     }
 
-    function dateNowTest() {
+    function dateNowTest(hour, minute, second) {
+        if (hour>=0 && minute>=0 && second>=0) {
+
+            timeTest = {
+                hour: hour,
+                minute: minute,
+                second: second
+            };
+
+            return timeTest;
+        };
+
         if (flag === 0) {
             var dateTest = new Date();
 
@@ -159,7 +236,7 @@ function cClock(options) {
                 hour: dateTest.getHours(),
                 minute: dateTest.getMinutes(),
                 second: dateTest.getSeconds()
-            }
+            };
 
             flag++;
         } else {
