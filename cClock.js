@@ -1,7 +1,7 @@
 cClock({
     // hourLength: 0.9,
     // minuteLength: 0.9,
-    // secondLength: 0.9,
+    // secondLength: 0.7,
     // handWidth: 8,
     // handColor: "#777",
     // handStyle: "butt",
@@ -49,13 +49,15 @@ function cClock(options) {
             radius: radius,
 
             hourLength: radius * (options.hourLength || 0.65),
-            minuteLength: radius * (options.minuteLength || 0.85),
-            secondLength: radius * (options.secondLength || 0.8)
+            minuteLength: radius * (options.minuteLength || 0.85)
         };
+
+        size.secondLength = options.secondLength ? radius * options.secondLength : (options.secondLength === 0 ? 0 : radius * 0.8);
 
         size.hourBackLength = options.hourBackLength ? radius * options.hourBackLength : (options.hourBackLength === 0 ? 0 : radius * 0.2);
         size.minuteBackLength = options.minuteBackLength ? radius * options.minuteBackLength : (options.minuteBackLength === 0 ? 0 : radius * 0.2);
-        size.secondBackLength = options.secondBackLength ? radius * options.secondBackLength : (options.secondBackLength === 0 ? 0 : radius * 0.2);
+        size.secondBackLength = options.secondLength === 0 ? 0 : (options.secondBackLength ? radius * options.secondBackLength : (options.secondBackLength === 0 ? 0 : radius * 0.2));
+
         size.hourDialLength = options.hourDialLength ? radius * (1 - options.hourDialLength) : (options.hourDialLength === 0 ? 0 : radius * (1 - 0.15));
         size.minuteDialLength = options.minuteDialLength ? radius * (1 - options.minuteDialLength) : (options.minuteDialLength === 0 ? 0 : radius * (1 - 0.08));
 
