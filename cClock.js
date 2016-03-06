@@ -1,5 +1,5 @@
 cClock({
-    // hourLength: 0.9,
+    // hourLength: 0.5,
     // minuteLength: 0.9,
     // secondLength: 0.7,
     // handWidth: 8,
@@ -26,12 +26,33 @@ function cClock(options) {
         return false;
     }
 
+    var defaultOptions = {
+        hourLength: 0.85,
+        minuteLength: 0.85,
+        secondLength: 0.8,
+        handWidth: 2,
+        handColor: "#000",
+        handStyle: "round",
+        centerRadius: 5,
+        hourBackLength: 0.2,
+        minuteBackLength: 0.2,
+        secondBackLength: 0.2,
+        borderWidth: 2,
+        borderColor: "#000",
+        bgColor: "#fff",
+        hourDialWidth: 2,
+        hourDialLength: 0.15,
+        minuteDialWidth: 2,
+        minuteDialLength: 0.08,
+        dialColor: "#000"
+    };
+
     var context = canvas.getContext("2d");
 
     var canvasWidth = canvas.offsetWidth;
     context.translate(canvasWidth / 2, canvasWidth / 2);
 
-    var width = canvasWidth - (options.borderWidth || 2);
+    var width = canvasWidth - (options.borderWidth || defaultOptions.borderWidth);
 
     var twoPi = 2 * Math.PI,
         clockSize = calcSize(width),
@@ -48,18 +69,18 @@ function cClock(options) {
         var size = {
             radius: radius,
 
-            hourLength: radius * (options.hourLength || 0.65),
-            minuteLength: radius * (options.minuteLength || 0.85)
+            hourLength: radius * (options.hourLength || defaultOptions.hourLength),
+            minuteLength: radius * (options.minuteLength || defaultOptions.minuteLength)
         };
 
-        size.secondLength = options.secondLength ? radius * options.secondLength : (options.secondLength === 0 ? 0 : radius * 0.8);
+        size.secondLength = options.secondLength ? radius * options.secondLength : (options.secondLength === 0 ? 0 : radius * defaultOptions.secondLength);
 
-        size.hourBackLength = options.hourBackLength ? radius * options.hourBackLength : (options.hourBackLength === 0 ? 0 : radius * 0.2);
-        size.minuteBackLength = options.minuteBackLength ? radius * options.minuteBackLength : (options.minuteBackLength === 0 ? 0 : radius * 0.2);
-        size.secondBackLength = options.secondLength === 0 ? 0 : (options.secondBackLength ? radius * options.secondBackLength : (options.secondBackLength === 0 ? 0 : radius * 0.2));
+        size.hourBackLength = options.hourBackLength ? radius * options.hourBackLength : (options.hourBackLength === 0 ? 0 : radius * defaultOptions.hourBackLength);
+        size.minuteBackLength = options.minuteBackLength ? radius * options.minuteBackLength : (options.minuteBackLength === 0 ? 0 : radius * defaultOptions.minuteBackLength);
+        size.secondBackLength = options.secondLength === 0 ? 0 : (options.secondBackLength ? radius * options.secondBackLength : (options.secondBackLength === 0 ? 0 : radius * defaultOptions.secondBackLength));
 
-        size.hourDialLength = options.hourDialLength ? radius * (1 - options.hourDialLength) : (options.hourDialLength === 0 ? 0 : radius * (1 - 0.15));
-        size.minuteDialLength = options.minuteDialLength ? radius * (1 - options.minuteDialLength) : (options.minuteDialLength === 0 ? 0 : radius * (1 - 0.08));
+        size.hourDialLength = options.hourDialLength ? radius * (1 - options.hourDialLength) : (options.hourDialLength === 0 ? 0 : radius * (1 - defaultOptions.hourDialLength));
+        size.minuteDialLength = options.minuteDialLength ? radius * (1 - options.minuteDialLength) : (options.minuteDialLength === 0 ? 0 : radius * (1 - defaultOptions.minuteDialLength));
 
         return size;
     }
@@ -148,17 +169,17 @@ function cClock(options) {
             context.arc(0, 0, radius, 0, twoPi, false);
 
             if (options.borderWidth || options.borderWidth === undefined) {
-                context.lineWidth = options.borderWidth || 2;
-                context.strokeStyle = options.borderColor || "#000";
+                context.lineWidth = options.borderWidth || defaultOptions.borderWidth;
+                context.strokeStyle = options.borderColor || defaultOptions.borderColor;
                 context.stroke();
             }
 
-            context.fillStyle = options.bgColor || "#fff";
+            context.fillStyle = options.bgColor || defaultOptions.bgColor;
             context.fill();
 
             if (options.centerRadius || options.centerRadius === undefined) {
                 context.beginPath();
-                context.arc(0, 0, options.centerRadius || 5, 0, twoPi, false);
+                context.arc(0, 0, options.centerRadius || defaultOptions.centerRadius, 0, twoPi, false);
                 context.fillStyle = options.handColor || "#000";
                 context.fill();
             }
@@ -178,8 +199,8 @@ function cClock(options) {
             }
 
             context.lineCap = "butt";
-            context.lineWidth = options.hourDialWidth || 2;
-            context.strokeStyle = options.dialColor || "#4d4d4d";
+            context.lineWidth = options.hourDialWidth || defaultOptions.hourDialWidth;
+            context.strokeStyle = options.dialColor || defaultOptions.dialColor;
             context.stroke();
 
             if (!(options.minuteDialWidth === 0 || options.minuteDialLength === 0)) {
@@ -197,7 +218,7 @@ function cClock(options) {
                     context.lineTo(minuteDialEnd[0], minuteDialEnd[1]);
                 }
 
-                context.lineWidth = options.minuteDialWidth || 2;
+                context.lineWidth = options.minuteDialWidth || defaultOptions.minuteDialWidth;
                 context.stroke();
             }
 
@@ -215,9 +236,9 @@ function cClock(options) {
             context.moveTo(-secondBackCoord[0], -secondBackCoord[1]);
             context.lineTo(secondCoord[0], secondCoord[1]);
 
-            context.lineWidth = options.handWidth || 2;
-            context.lineCap = options.handStyle || "round";
-            context.strokeStyle = options.handColor || "#000";
+            context.lineWidth = options.handWidth || defaultOptions.handWidth;
+            context.lineCap = options.handStyle || defaultOptions.handStyle;
+            context.strokeStyle = options.handColor || defaultOptions.handColor;
             context.stroke();
         }
     }
