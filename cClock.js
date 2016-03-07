@@ -27,7 +27,7 @@ function cClock(options) {
     }
 
     var defaultOptions = {
-        hourLength: 0.85,
+        hourLength: 0.65,
         minuteLength: 0.85,
         secondLength: 0.8,
         handWidth: 2,
