@@ -32,7 +32,7 @@ Apply cClock and call the function as simple as
 ```
 
 ```javascript
-cClock();
+cClock({});
 ```
 
 All done !
@@ -111,7 +111,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 ```
 
 ```javascript
-cClock();
+cClock({});
 ```
 
 即可实现默认效果。

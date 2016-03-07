@@ -1,25 +1,3 @@
-cClock({
-    // hourLength: 0.5,
-    // minuteLength: 0.9,
-    // secondLength: 0.7,
-    // handWidth: 8,
-    // handColor: "#777",
-    // handStyle: "butt",
-    // centerRadius: 5,
-    // hourBackLength: 0,
-    // minuteBackLength: 0,
-    // secondBackLength: 0,
-    // borderWidth: 24,
-    // borderColor: "#4d4d4d",
-    // padding: 20,
-    // bgColor: "#aaa",
-    // hourDialWidth: 6,
-    // hourDialLength: 0.2,
-    // minuteDialWidth: 2,
-    // minuteDialLength: 0.1,
-    // dialColor: "#f2f2f2"
-});
-
 function cClock(options) {
     var canvas = document.getElementById("canvas");
 
@@ -57,58 +35,87 @@ function cClock(options) {
     var width = canvasWidth - (options.borderWidth || defaultOptions.borderWidth);
 
     var twoPi = 2 * Math.PI,
-        clockSize = calcSize(width),
+        clockLength = calcLength(width),
         currentTime;
 
-    var flag = 0,
-        timeTest;
+    // Test
+    // var flag = 0,
+    //     timeTest;
 
-    rotateClock();
+    runClock();
 
-    function calcSize(width) {
+    /**
+     * 计算时钟各部分的长度
+     * calculate the length of clock's each part
+     * @param  {Number} width 用于计算半径 For calculating radius
+     * @return {Object}       包含各部分长度的对象 A Object about lengths
+     */
+    function calcLength(width) {
         var radius = Math.ceil(width / 2 - 1);
 
-        var size = {
+        var legnth = {
             radius: radius,
 
             hourLength: radius * (options.hourLength || defaultOptions.hourLength),
             minuteLength: radius * (options.minuteLength || defaultOptions.minuteLength)
         };
 
-        size.secondLength = options.secondLength ? radius * options.secondLength : (options.secondLength === 0 ? 0 : radius * defaultOptions.secondLength);
+        // Format: key = condition1 ? value1 : (condition2 ? value2 : value3 );
+        // Meaning: if (condition1) {
+        //     key = value1;
+        // } else if (condition2) {
+        //     key = value2;
+        // } else {
+        //     key = value3;
+        // }
+        legnth.secondLength = options.secondLength ? radius * options.secondLength : (options.secondLength === 0 ? 0 : radius * defaultOptions.secondLength);
 
-        size.hourBackLength = options.hourBackLength ? radius * options.hourBackLength : (options.hourBackLength === 0 ? 0 : radius * defaultOptions.hourBackLength);
-        size.minuteBackLength = options.minuteBackLength ? radius * options.minuteBackLength : (options.minuteBackLength === 0 ? 0 : radius * defaultOptions.minuteBackLength);
-        size.secondBackLength = options.secondLength === 0 ? 0 : (options.secondBackLength ? radius * options.secondBackLength : (options.secondBackLength === 0 ? 0 : radius * defaultOptions.secondBackLength));
+        legnth.hourBackLength = options.hourBackLength ? radius * options.hourBackLength : (options.hourBackLength === 0 ? 0 : radius * defaultOptions.hourBackLength);
+        legnth.minuteBackLength = options.minuteBackLength ? radius * options.minuteBackLength : (options.minuteBackLength === 0 ? 0 : radius * defaultOptions.minuteBackLength);
+        legnth.secondBackLength = options.secondLength === 0 ? 0 : (options.secondBackLength ? radius * options.secondBackLength : (options.secondBackLength === 0 ? 0 : radius * defaultOptions.secondBackLength));
 
-        size.hourDialLength = options.hourDialLength ? radius * (1 - options.hourDialLength) : (options.hourDialLength === 0 ? 0 : radius * (1 - defaultOptions.hourDialLength));
-        size.minuteDialLength = options.minuteDialLength ? radius * (1 - options.minuteDialLength) : (options.minuteDialLength === 0 ? 0 : radius * (1 - defaultOptions.minuteDialLength));
+        legnth.hourDialLength = options.hourDialLength ? radius * (1 - options.hourDialLength) : (options.hourDialLength === 0 ? 0 : radius * (1 - defaultOptions.hourDialLength));
+        legnth.minuteDialLength = options.minuteDialLength ? radius * (1 - options.minuteDialLength) : (options.minuteDialLength === 0 ? 0 : radius * (1 - defaultOptions.minuteDialLength));
 
-        return size;
+        return legnth;
     }
 
-    function rotateClock() {
-        // currentTime = dateNow();
-        currentTime = dateNowTest(10, 8);
+    /**
+     * 最主要的函数，计算坐标，绘制时钟
+     * The most important function for calculating coordinates and drawing the clock
+     */
+    function runClock() {
+        currentTime = dateNow();
 
-        var hourCoord = calcCoordinate(currentTime.hour, clockSize.hourLength, true);
-        var minuteCoord = calcCoordinate(currentTime.minute, clockSize.minuteLength, false);
-        var secondCoord = calcCoordinate(currentTime.second, clockSize.secondLength);
+        // Test
+        // currentTime = dateNowTest(10, 8);
 
-        var hourBackCoord = calcCoordinate(currentTime.hour, clockSize.hourBackLength, true);
-        var minuteBackCoord = calcCoordinate(currentTime.minute, clockSize.minuteBackLength, false);
-        var secondBackCoord = calcCoordinate(currentTime.second, clockSize.secondBackLength);
+        // 计算各指针的坐标
+        // Calculate coordinates of hands
+        var hourCoord = calcCoordinate(currentTime.hour, clockLength.hourLength, true);
+        var minuteCoord = calcCoordinate(currentTime.minute, clockLength.minuteLength, false);
+        var secondCoord = calcCoordinate(currentTime.second, clockLength.secondLength);
+
+        var hourBackCoord = calcCoordinate(currentTime.hour, clockLength.hourBackLength, true);
+        var minuteBackCoord = calcCoordinate(currentTime.minute, clockLength.minuteBackLength, false);
+        var secondBackCoord = calcCoordinate(currentTime.second, clockLength.secondBackLength);
 
         drawClock(hourCoord, minuteCoord, secondCoord, hourBackCoord, minuteBackCoord, secondBackCoord);
 
+        // Test
         // console.clear();
         // console.log(currentTime.hour + ":" + currentTime.minute + ":" + currentTime.second);
 
         setTimeout(function() {
-            rotateClock();
+            runClock();
         }, 1000);
     }
 
+    /**
+     * 取得当前时间
+     * Get current time
+     * @return {Object} 包含各部分时间的对象 A Object about time
+     */
     function dateNow() {
         var date = new Date();
 
@@ -121,7 +128,17 @@ function cClock(options) {
         return time;
     }
 
+    /**
+     * 计算坐标
+     * Calculate coordinates
+     * @param  {Number}  time      
+     * @param  {Number}  handLenth 
+     * @param  {Boolean} isHour    
+     * @return {Array}            坐标 [x, y]
+     */
     function calcCoordinate(time, handLenth, isHour) {
+        // 传入的事件如果是小时，就改成12小时制，并乘5(使最大值与分钟相同)
+        // Change hour to 12-hour clock and plus 5
         if (isHour) {
             if (time >= 12) {
                 time -= 12;
@@ -131,6 +148,8 @@ function cClock(options) {
 
         var offsetR = correctRadian(isHour);
 
+        // 1/4 表示将坐标轴顺时针旋转90度
+        // 1/4 means rotating the coordinate axes 90 degrees
         var radian = (time / 60 + 1 / 4) * twoPi + offsetR;
 
         var x = -Math.round(handLenth * Math.cos(radian));
@@ -138,6 +157,12 @@ function cClock(options) {
 
         return [x, y];
 
+        /**
+         * 补偿偏移的弧度
+         * Correct offsets of radian
+         * @param  {Boolean} isHour 
+         * @return {Number}         
+         */
         function correctRadian(isHour) {
             var offset;
 
@@ -155,10 +180,20 @@ function cClock(options) {
         }
     }
 
+    /**
+     * 绘制时钟
+     * Draw clock
+     * @param  {Array} hourCoord       [description]
+     * @param  {Array} minuteCoord     [description]
+     * @param  {Array} secondCoord     [description]
+     * @param  {Array} hourBackCoord   [description]
+     * @param  {Array} minuteBackCoord [description]
+     * @param  {Array} secondBackCoord [description]
+     */
     function drawClock(hourCoord, minuteCoord, secondCoord, hourBackCoord, minuteBackCoord, secondBackCoord) {
         context.clearRect(-canvasWidth / 2, -canvasWidth / 2, canvasWidth, canvasWidth);
 
-        drawCircle(clockSize.radius);
+        drawCircle(clockLength.radius);
 
         if (!(options.hourDialWidth === 0 || options.hourDialLength === 0)) {
             drawDial();
@@ -166,6 +201,11 @@ function cClock(options) {
 
         drawHand();
 
+        /**
+         * 绘制边框和中心圆
+         * Draw border and center circle
+         * @param  {Number} radius 
+         */
         function drawCircle(radius) {
             context.beginPath();
 
@@ -188,14 +228,18 @@ function cClock(options) {
             }
         }
 
+        /**
+         * 绘制刻度
+         * Draw dials
+         */
         function drawDial() {
             context.beginPath();
 
             var i, hourDialStart, hourDialEnd;
 
             for (i = 0; i < 60; i += 5) {
-                hourDialStart = calcCoordinate(i, clockSize.hourDialLength - (options.padding || defaultOptions.padding));
-                hourDialEnd = calcCoordinate(i, clockSize.radius - (options.padding || defaultOptions.padding));
+                hourDialStart = calcCoordinate(i, clockLength.hourDialLength - (options.padding || defaultOptions.padding));
+                hourDialEnd = calcCoordinate(i, clockLength.radius - (options.padding || defaultOptions.padding));
 
                 context.moveTo(hourDialStart[0], hourDialStart[1]);
                 context.lineTo(hourDialEnd[0], hourDialEnd[1]);
@@ -210,12 +254,16 @@ function cClock(options) {
                 drawMinuteDial();
             }
 
+            /**
+             * 绘制分钟刻度
+             * Draw minute dial
+             */
             function drawMinuteDial() {
                 var minuteDialStart, minuteDialEnd;
 
                 for (i = 0; i < 60; i++) {
-                    minuteDialStart = calcCoordinate(i, clockSize.minuteDialLength - (options.padding || defaultOptions.padding));
-                    minuteDialEnd = calcCoordinate(i, clockSize.radius - (options.padding || defaultOptions.padding));
+                    minuteDialStart = calcCoordinate(i, clockLength.minuteDialLength - (options.padding || defaultOptions.padding));
+                    minuteDialEnd = calcCoordinate(i, clockLength.radius - (options.padding || defaultOptions.padding));
 
                     context.moveTo(minuteDialStart[0], minuteDialStart[1]);
                     context.lineTo(minuteDialEnd[0], minuteDialEnd[1]);
@@ -227,6 +275,10 @@ function cClock(options) {
 
         }
 
+        /**
+         * 绘制指针
+         * Draw hands
+         */
         function drawHand() {
             context.beginPath();
 
@@ -246,46 +298,47 @@ function cClock(options) {
         }
     }
 
-    function dateNowTest(hour, minute, second) {
-        if (hour >= 0 && minute >= 0 && second >= 0) {
+    // Test
+    // function dateNowTest(hour, minute, second) {
+    //     if (hour >= 0 && minute >= 0 && second >= 0) {
 
-            timeTest = {
-                hour: hour,
-                minute: minute,
-                second: second
-            };
+    //         timeTest = {
+    //             hour: hour,
+    //             minute: minute,
+    //             second: second
+    //         };
 
-            return timeTest;
-        }
+    //         return timeTest;
+    //     }
 
-        if (flag === 0) {
-            var dateTest = new Date();
+    //     if (flag === 0) {
+    //         var dateTest = new Date();
 
-            timeTest = {
-                hour: dateTest.getHours(),
-                minute: dateTest.getMinutes(),
-                second: dateTest.getSeconds()
-            };
+    //         timeTest = {
+    //             hour: dateTest.getHours(),
+    //             minute: dateTest.getMinutes(),
+    //             second: dateTest.getSeconds()
+    //         };
 
-            flag++;
-        } else {
-            if (timeTest.second == 59) {
-                timeTest.second = 0;
-                timeTest.minute++;
-            } else {
-                timeTest.second++;
-            }
+    //         flag++;
+    //     } else {
+    //         if (timeTest.second == 59) {
+    //             timeTest.second = 0;
+    //             timeTest.minute++;
+    //         } else {
+    //             timeTest.second++;
+    //         }
 
-            if (timeTest.minute == 60) {
-                timeTest.minute = 0;
-                timeTest.hour++;
-            }
+    //         if (timeTest.minute == 60) {
+    //             timeTest.minute = 0;
+    //             timeTest.hour++;
+    //         }
 
-            if (timeTest.hour == 24) {
-                timeTest.hour = 0;
-            }
-        }
+    //         if (timeTest.hour == 24) {
+    //             timeTest.hour = 0;
+    //         }
+    //     }
 
-        return timeTest;
-    }
+    //     return timeTest;
+    // }
 }
