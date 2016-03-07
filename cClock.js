@@ -11,6 +11,7 @@ cClock({
     // secondBackLength: 0,
     // borderWidth: 24,
     // borderColor: "#4d4d4d",
+    // padding: 20,
     // bgColor: "#aaa",
     // hourDialWidth: 6,
     // hourDialLength: 0.2,
@@ -39,6 +40,7 @@ function cClock(options) {
         secondBackLength: 0.2,
         borderWidth: 2,
         borderColor: "#000",
+        padding: 0,
         bgColor: "#fff",
         hourDialWidth: 2,
         hourDialLength: 0.15,
@@ -98,6 +100,7 @@ function cClock(options) {
         var secondBackCoord = calcCoordinate(currentTime.second, clockSize.secondBackLength);
 
         drawClock(hourCoord, minuteCoord, secondCoord, hourBackCoord, minuteBackCoord, secondBackCoord);
+
         // console.clear();
         // console.log(currentTime.hour + ":" + currentTime.minute + ":" + currentTime.second);
 
@@ -191,8 +194,8 @@ function cClock(options) {
             var i, hourDialStart, hourDialEnd;
 
             for (i = 0; i < 60; i += 5) {
-                hourDialStart = calcCoordinate(i, clockSize.hourDialLength);
-                hourDialEnd = calcCoordinate(i, clockSize.radius);
+                hourDialStart = calcCoordinate(i, clockSize.hourDialLength - (options.padding || defaultOptions.padding));
+                hourDialEnd = calcCoordinate(i, clockSize.radius - (options.padding || defaultOptions.padding));
 
                 context.moveTo(hourDialStart[0], hourDialStart[1]);
                 context.lineTo(hourDialEnd[0], hourDialEnd[1]);
@@ -211,8 +214,8 @@ function cClock(options) {
                 var minuteDialStart, minuteDialEnd;
 
                 for (i = 0; i < 60; i++) {
-                    minuteDialStart = calcCoordinate(i, clockSize.minuteDialLength);
-                    minuteDialEnd = calcCoordinate(i, clockSize.radius);
+                    minuteDialStart = calcCoordinate(i, clockSize.minuteDialLength - (options.padding || defaultOptions.padding));
+                    minuteDialEnd = calcCoordinate(i, clockSize.radius - (options.padding || defaultOptions.padding));
 
                     context.moveTo(minuteDialStart[0], minuteDialStart[1]);
                     context.lineTo(minuteDialEnd[0], minuteDialEnd[1]);

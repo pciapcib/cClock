@@ -2,7 +2,18 @@
 
 A flat and dynamic clock by Canvas
 
-[TOC]
+##Index
+
+* [Quick start](#quick-start)
+* [Options](#options)
+* [Attentions](#attentions)
+* [License](#license)
+
+##中文说明
+* [使用说明](#使用说明)
+* [配置参数](#配置参数)
+* [注意事项](#注意事项)
+* [其它](#其它)
 
 ##Index
 
@@ -52,6 +63,7 @@ cClock({
 | secondBackLength | Number | 0.2 | The length of back second hand. |
 | borderWidth | Number | 2 | The width of border. |
 | borderColor | String | "#000" | The color of border. |
+| padding | Number | 0 | The distance between border and dial. |
 | bgColor | String | "#fff" | The backgound color of clock. |
 | hourDialWidth | Number | 2 | The width of hour dial.  |
 | hourDialLength | Number | 0.15 | The length of hour dial. |
@@ -130,6 +142,7 @@ cClock({
 | secondBackLength | Number | 0.2 | 秒针后部的长度 |
 | borderWidth | Number | 2 | 边框的宽度 |
 | borderColor | String | "#000" | 边框的颜色 |
+| padding | Number | 0 | 边框和刻度之间的内边距 |
 | bgColor | String | "#fff" | 时钟的背景色 |
 | hourDialWidth | Number | 2 | 小时刻度的宽度  |
 | hourDialLength | Number | 0.15 | 小时刻度的长度 |
@@ -155,16 +168,3 @@ cClock({
 3. 复习了不少高中数学的知识。。。
 
 4. 未来有时间精力的情况下，会继续维护开发这款时钟，提供更多效果。
-
-##Index
-
-* [Quick start](#quick-start)
-* [Arguments](#arguments)
-* [Options](#options)
-* [License](#license)
-
-##中文说明
-* [使用说明](#使用说明)
-* [配置参数](#配置参数)
-* [注意事项](#注意事项)
-* [其它](#其它)
