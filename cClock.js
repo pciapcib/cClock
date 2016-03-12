@@ -1,5 +1,5 @@
 /*!
- * cClock.js 1.1.1
+ * cClock.js 1.1.2
  *
  * https://github.com/pciapcib/cClock
  *
@@ -16,11 +16,13 @@ function cClock(options, className, showTime) {
 
     var defaultOptions = {
         hourLength: 0.65,
+        hourWidth: 2,
         minuteLength: 0.85,
+        minuteWidth: 2,
         secondLength: 0.8,
-        handWidth: 2,
+        secondWidth: 2,
         handColor: "#000",
-        handStyle: "round",
+        handStyle: "butt",
         centerRadius: 5,
         hourBackLength: 0.2,
         minuteBackLength: 0.2,
@@ -295,18 +297,25 @@ function cClock(options, className, showTime) {
         function drawHand() {
             context.beginPath();
 
+            context.lineCap = options.handStyle || defaultOptions.handStyle;
+            context.strokeStyle = options.handColor || defaultOptions.handColor;
+
             context.moveTo(-hourBackCoord[0], -hourBackCoord[1]);
             context.lineTo(hourCoord[0], hourCoord[1]);
+
+            context.lineWidth = options.hourWidth || defaultOptions.hourWidth;
+            context.stroke();
 
             context.moveTo(-minuteBackCoord[0], -minuteBackCoord[1]);
             context.lineTo(minuteCoord[0], minuteCoord[1]);
 
+            context.lineWidth = options.minuteWidth || defaultOptions.minuteWidth;
+            context.stroke();
+
             context.moveTo(-secondBackCoord[0], -secondBackCoord[1]);
             context.lineTo(secondCoord[0], secondCoord[1]);
 
-            context.lineWidth = options.handWidth || defaultOptions.handWidth;
-            context.lineCap = options.handStyle || defaultOptions.handStyle;
-            context.strokeStyle = options.handColor || defaultOptions.handColor;
+            context.lineWidth = options.secondWidth || defaultOptions.secondWidth;
             context.stroke();
         }
     }

@@ -62,12 +62,14 @@ The Parameters are :
 
 | Option | Type | Default | Description |
 |:---:|:---:|:---:|:---:|
-| hourLength | Number | 0.65 | The length of hour hand, can't be 0. |
-| minuteLength | Number | 0.85 | The length of minute hand. can't be 0. |
+| hourLength | Number | 0.65 | The length of hour hand. |
+| hourWidth | Number | 2 | The width of hour hand. |
+| minuteLength | Number | 0.85 | The length of minute hand. |
+| minuteWidth | Number | 2 | The width of minute hand. |
 | secondLength | Number | 0.8 | The length of second hand. |
-| handWidth | Number | 2 | The width of hands. |
+| secondWidth | Number | 2 | The width of second hand. |
 | handColor | String | "#000" | The color of hands. |
-| handStyle | String | "round" | The style of hands. Only "butt" and "square" are permitted. |
+| handStyle | String | "butt" | The style of hands. Only "round" and "square" are permitted. |
 | centerRadius | Number | 5 | The radius of center circle. |
 | hourBackLength | Number | 0.2 | The length of back hour hand. |
 | minuteBackLength | Number | 0.2 | The length of back minute hand. |
@@ -154,12 +156,14 @@ cClock({
 
 | 选项 | 类型 | 默认值 | 描述 |
 |:---:|:---:|:---:|:---:|
-| hourLength | Number | 0.65 | 时针的长度，不能为0 |
-| minuteLength | Number | 0.85 | 分针的长度，不能为0 |
+| hourLength | Number | 0.65 | 时针的长度 |
+| hourWidth | Number | 2 | 时针的宽度 |
+| minuteLength | Number | 0.85 | 分针的长度 |
+| minuteWidth | Number | 2 | 分针的宽度 |
 | secondLength | Number | 0.8 | 秒针的长度 |
-| handWidth | Number | 2 | 指针的宽度 |
+| secondWidth | Number | 2 | 秒针的宽度 |
 | handColor | String | "#000" | 指针的颜色 |
-| handStyle | String | "round" | 指针的类型，还可设置为"butt"、"square" |
+| handStyle | String | "butt" | 指针的类型，还可设置为"round"、"square" |
 | centerRadius | Number | 5 | 中心圆的半径 |
 | hourBackLength | Number | 0.2 | 时针后部的长度 |
 | minuteBackLength | Number | 0.2 | 分针后部的长度 |
