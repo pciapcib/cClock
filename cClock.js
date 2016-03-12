@@ -1,5 +1,5 @@
 /*!
- * cClock.js 1.1.0
+ * cClock.js 1.1.1
  *
  * https://github.com/pciapcib/cClock
  *
@@ -121,9 +121,13 @@ function cClock(options, className, showTime) {
         // console.clear();
         // console.log(currentTime.hour + ":" + currentTime.minute + ":" + currentTime.second);
 
-        setTimeout(function() {
+        var timeOut = setTimeout(function() {
             runClock();
         }, 1000);
+
+        if (showTime) {
+            clearTimeout(timeOut);
+        }
     }
 
     /**
