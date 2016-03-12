@@ -1,5 +1,14 @@
-function cClock(options) {
-    var canvas = document.getElementById("canvas");
+/*!
+ * cClock.js 1.1.0
+ *
+ * https://github.com/pciapcib/cClock
+ *
+ * MIT licensed
+ *
+ * Copyright (c) 2016 Ting Shen
+ */
+function cClock(options, className, showTime) {
+    var canvas = document.getElementsByClassName(className)[0];
 
     if (!canvas) {
         return false;
@@ -39,8 +48,10 @@ function cClock(options) {
         currentTime;
 
     // Test
-    // var flag = 0,
-    //     timeTest;
+    if (showTime) {
+        var flag = 0,
+            timeTest;
+    }
 
     runClock();
 
@@ -48,12 +59,12 @@ function cClock(options) {
      * 计算时钟各部分的长度
      * calculate the length of clock's each part
      * @param  {Number} width 用于计算半径 For calculating radius
-     * @return {Object}       包含各部分长度的对象 A Object about lengths
+     * @return {Object}       包含各部分长度的对象 A Object including lengths
      */
     function calcLength(width) {
         var radius = Math.ceil(width / 2 - 1);
 
-        var legnth = {
+        var length = {
             radius: radius,
 
             hourLength: radius * (options.hourLength || defaultOptions.hourLength),
@@ -68,16 +79,16 @@ function cClock(options) {
         // } else {
         //     key = value3;
         // }
-        legnth.secondLength = options.secondLength ? radius * options.secondLength : (options.secondLength === 0 ? 0 : radius * defaultOptions.secondLength);
+        length.secondLength = options.secondLength ? radius * options.secondLength : (options.secondLength === 0 ? 0 : radius * defaultOptions.secondLength);
 
-        legnth.hourBackLength = options.hourBackLength ? radius * options.hourBackLength : (options.hourBackLength === 0 ? 0 : radius * defaultOptions.hourBackLength);
-        legnth.minuteBackLength = options.minuteBackLength ? radius * options.minuteBackLength : (options.minuteBackLength === 0 ? 0 : radius * defaultOptions.minuteBackLength);
-        legnth.secondBackLength = options.secondLength === 0 ? 0 : (options.secondBackLength ? radius * options.secondBackLength : (options.secondBackLength === 0 ? 0 : radius * defaultOptions.secondBackLength));
+        length.hourBackLength = options.hourBackLength ? radius * options.hourBackLength : (options.hourBackLength === 0 ? 0 : radius * defaultOptions.hourBackLength);
+        length.minuteBackLength = options.minuteBackLength ? radius * options.minuteBackLength : (options.minuteBackLength === 0 ? 0 : radius * defaultOptions.minuteBackLength);
+        length.secondBackLength = options.secondLength === 0 ? 0 : (options.secondBackLength ? radius * options.secondBackLength : (options.secondBackLength === 0 ? 0 : radius * defaultOptions.secondBackLength));
 
-        legnth.hourDialLength = options.hourDialLength ? radius * (1 - options.hourDialLength) : (options.hourDialLength === 0 ? 0 : radius * (1 - defaultOptions.hourDialLength));
-        legnth.minuteDialLength = options.minuteDialLength ? radius * (1 - options.minuteDialLength) : (options.minuteDialLength === 0 ? 0 : radius * (1 - defaultOptions.minuteDialLength));
+        length.hourDialLength = options.hourDialLength ? radius * (1 - options.hourDialLength) : (options.hourDialLength === 0 ? 0 : radius * (1 - defaultOptions.hourDialLength));
+        length.minuteDialLength = options.minuteDialLength ? radius * (1 - options.minuteDialLength) : (options.minuteDialLength === 0 ? 0 : radius * (1 - defaultOptions.minuteDialLength));
 
-        return legnth;
+        return length;
     }
 
     /**
@@ -88,7 +99,11 @@ function cClock(options) {
         currentTime = dateNow();
 
         // Test
-        // currentTime = dateNowTest(10, 8);
+        if (showTime === true) {
+            currentTime = dateNowTest(10, 8, 30);
+        } else if (showTime) {
+            currentTime = dateNowTest(showTime.hour, showTime.minute, showTime.second);
+        }
 
         // 计算各指针的坐标
         // Calculate coordinates of hands
@@ -114,7 +129,7 @@ function cClock(options) {
     /**
      * 取得当前时间
      * Get current time
-     * @return {Object} 包含各部分时间的对象 A Object about time
+     * @return {Object} 包含各部分时间的对象 A Object including time
      */
     function dateNow() {
         var date = new Date();
@@ -131,14 +146,14 @@ function cClock(options) {
     /**
      * 计算坐标
      * Calculate coordinates
-     * @param  {Number}  time      
-     * @param  {Number}  handLenth 
-     * @param  {Boolean} isHour    
+     * @param  {Number}  time
+     * @param  {Number}  handLenth
+     * @param  {Boolean} isHour
      * @return {Array}            坐标 [x, y]
      */
     function calcCoordinate(time, handLenth, isHour) {
         // 传入的事件如果是小时，就改成12小时制，并乘5(使最大值与分钟相同)
-        // Change hour to 12-hour clock and plus 5
+        // Change hour to 12-hour clock and times 5
         if (isHour) {
             if (time >= 12) {
                 time -= 12;
@@ -160,8 +175,8 @@ function cClock(options) {
         /**
          * 补偿偏移的弧度
          * Correct offsets of radian
-         * @param  {Boolean} isHour 
-         * @return {Number}         
+         * @param  {Boolean} isHour
+         * @return {Number}
          */
         function correctRadian(isHour) {
             var offset;
@@ -183,12 +198,6 @@ function cClock(options) {
     /**
      * 绘制时钟
      * Draw clock
-     * @param  {Array} hourCoord       [description]
-     * @param  {Array} minuteCoord     [description]
-     * @param  {Array} secondCoord     [description]
-     * @param  {Array} hourBackCoord   [description]
-     * @param  {Array} minuteBackCoord [description]
-     * @param  {Array} secondBackCoord [description]
      */
     function drawClock(hourCoord, minuteCoord, secondCoord, hourBackCoord, minuteBackCoord, secondBackCoord) {
         context.clearRect(-canvasWidth / 2, -canvasWidth / 2, canvasWidth, canvasWidth);
@@ -204,7 +213,7 @@ function cClock(options) {
         /**
          * 绘制边框和中心圆
          * Draw border and center circle
-         * @param  {Number} radius 
+         * @param  {Number} radius
          */
         function drawCircle(radius) {
             context.beginPath();
@@ -299,46 +308,45 @@ function cClock(options) {
     }
 
     // Test
-    // function dateNowTest(hour, minute, second) {
-    //     if (hour >= 0 && minute >= 0 && second >= 0) {
+    function dateNowTest(hour, minute, second) {
+        if (hour >= 0 && minute >= 0 && second >= 0) {
+            timeTest = {
+                hour: hour,
+                minute: minute,
+                second: second
+            };
 
-    //         timeTest = {
-    //             hour: hour,
-    //             minute: minute,
-    //             second: second
-    //         };
+            return timeTest;
+        }
 
-    //         return timeTest;
-    //     }
+        if (flag === 0) {
+            var dateTest = new Date();
 
-    //     if (flag === 0) {
-    //         var dateTest = new Date();
+            timeTest = {
+                hour: dateTest.getHours(),
+                minute: dateTest.getMinutes(),
+                second: dateTest.getSeconds()
+            };
 
-    //         timeTest = {
-    //             hour: dateTest.getHours(),
-    //             minute: dateTest.getMinutes(),
-    //             second: dateTest.getSeconds()
-    //         };
+            flag++;
+        } else {
+            if (timeTest.second == 59) {
+                timeTest.second = 0;
+                timeTest.minute++;
+            } else {
+                timeTest.second++;
+            }
 
-    //         flag++;
-    //     } else {
-    //         if (timeTest.second == 59) {
-    //             timeTest.second = 0;
-    //             timeTest.minute++;
-    //         } else {
-    //             timeTest.second++;
-    //         }
+            if (timeTest.minute == 60) {
+                timeTest.minute = 0;
+                timeTest.hour++;
+            }
 
-    //         if (timeTest.minute == 60) {
-    //             timeTest.minute = 0;
-    //             timeTest.hour++;
-    //         }
+            if (timeTest.hour == 24) {
+                timeTest.hour = 0;
+            }
+        }
 
-    //         if (timeTest.hour == 24) {
-    //             timeTest.hour = 0;
-    //         }
-    //     }
-
-    //     return timeTest;
-    // }
+        return timeTest;
+    }
 }

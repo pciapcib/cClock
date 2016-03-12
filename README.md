@@ -28,26 +28,37 @@ The following file should be included.
 Apply cClock and call the function as simple as
 
 ```html
-<canvas id="canvas" width="400" height="400">A flat and dynamic clock.</canvas>
+<canvas class="cClock" width="400" height="400">A flat and dynamic clock.</canvas>
 ```
 
 ```javascript
-cClock({});
+cClock({}, "cClock");
 ```
 
 All done !
 
 ###Options
 
-Custom cClock with available options which are listed below.
+The cClock has awesome and customizable feature.
 
 ```javascript
+cClock(options, className, showTime);
+//or
 cClock({
     option: value,
     option2: value2,
     ...
+}, className, {
+    hour: hour,
+    minute: minute,
+    second: second
 });
 ```
+
+The Parameters are :
+1. A object to custom cClock including available options which are listed below. A null object means default options.
+2. cClock's class name, needed to be string.
+3. Optional, a object to make the cClock at including time. Also can be `true` to make it at default time which is 10 : 08 : 30.
 
 | Option | Type | Default | Description |
 |:---:|:---:|:---:|:---:|
@@ -104,29 +115,42 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 <script src="scripts/cClock.min.js"></script>
 ```
 
-添加`<canvas>`标签，设置宽高，并在标签内部添加一些描述，最后运行函数，
+添加`<canvas>`标签，设置宽高，并在标签内部添加一些描述，
 
 ```html
-<canvas id="canvas" width="400" height="400">A flat and dynamic clock.</canvas>
+<canvas class="cClock" width="400" height="400">A flat and dynamic clock.</canvas>
 ```
 
+运行函数，
+
 ```javascript
-cClock({});
+cClock({}, "cClock");
 ```
 
 即可实现默认效果。
 
 ###配置选项
 
-自定义cClock时，在函数中传入一个对象，可选参数列于下表。
+cClock拥有丰富的自定义功能。
 
 ```javascript
+cClock(options, className, showTime);
+//或
 cClock({
     option: value,
     option2: value2,
     ...
+}, className, {
+    hour: hour,
+    minute: minute,
+    second: second
 });
 ```
+
+参数分别为：
+1. 自定义cClock外观的配置对象，可选参数列于下表，空对象表示默认效果。
+2. cClock的类名，字符串形式。
+3. 可选，传入一个时间对象，可使cClock静止在设置的时间，也可传入`true`使之静止在默认时间——10 : 08 : 30。
 
 | 选项 | 类型 | 默认值 | 描述 |
 |:---:|:---:|:---:|:---:|

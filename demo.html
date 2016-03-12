@@ -3,19 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>cClock demo</title>
-    <style>
-        #canvas {
-            position: absolute;
-            top: 100px;
-            left: 100px;
-        }
-    </style>
 </head>
 <body>
-    <canvas id="canvas" width="400" height="400">A flat and dynamic clock.</canvas>
+    <canvas class="cClock1" width="400" height="400">A flat and dynamic clock.</canvas>
+    <canvas class="cClock2" width="200" height="200">A flat and dynamic clock.</canvas>
     <script src="cClock.min.js"></script>
     <script>
-        cClock({});
+        cClock({}, "cClock1");
+        cClock({}, "cClock2", true);
     </script>
 </body>
 </html>
