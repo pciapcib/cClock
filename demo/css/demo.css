@@ -1,0 +1,47 @@
+body {
+    overflow: visible;
+}
+
+h3 {
+    margin-top: 25px;
+}
+
+a {
+    color: #000;
+}
+
+a:hover {
+    color: #aaa;
+    border-bottom: 2px solid #aaa;
+}
+
+.github {
+    margin-top: 0;
+}
+
+.github .icon-star {
+    font-size: 16px;
+}
+
+#page2 .cell {
+    align-items: flex-start;
+}
+
+#page2 p,
+#page4 p {
+    margin-bottom: 20px;
+}
+
+#page3 {
+    padding: 4% 10%;
+}
+
+#page3 .cell {
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+#page4 a {
+    margin-right: 20px;
+}
