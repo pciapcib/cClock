@@ -56,8 +56,11 @@ cClock({
 ```
 
 The Parameters are :
+
 1. A object to custom cClock including available options which are listed below. A null object means default options.
+
 2. cClock's class name, needed to be string.
+
 3. Optional, a object to make the cClock at including time. Also can be `true` to make it at default time which is 10 : 08 : 30.
 
 | Option | Type | Default | Description |
@@ -87,10 +90,15 @@ The Parameters are :
 ###Attentions
 
 1. The width and height of cClock depend on `<canvas>`.
+
 2. So assign the width and height in this tag and make sure the tag is a square which means width equal height !
+
 3. The length of some options should be assigned decimal, which means "decimal times the radius length".
+
 4. If the length or width of one option equal 0,  the option will not display.
+
 5. For example, if "secondLength: 0", then there is no second hand.
+
 6. There will be no minute dial if there is no hour dial.
 
 ###License
@@ -150,8 +158,11 @@ cClock({
 ```
 
 参数分别为：
+
 1. 自定义cClock外观的配置对象，可选参数列于下表，空对象表示默认效果。
+
 2. cClock的类名，字符串形式。
+
 3. 可选，传入一个时间对象，可使cClock静止在设置的时间，也可传入`true`使之静止在默认时间——10 : 08 : 30。
 
 | 选项 | 类型 | 默认值 | 描述 |
@@ -181,10 +192,15 @@ cClock({
 ###注意事项
 
 1. 时钟的大小取决于`<canvas>`的宽高。
+
 2. 必须要给该标签设置宽高，并且保证是一个正方形，也就是宽高要相等。
+
 3. 一些与长度有关的选项需设置为小数，与时钟半径有关。
+
 4. 如果选项的长度或宽度设置为0，则表示不显示该选项有关的内容。
+
 5. 例如，如果设置"secondLength: 0"，就表示不需要秒针。
+
 6. 如果把小时刻度设置为不显示，那么分钟刻度也不会显示。
 
 ###其它
