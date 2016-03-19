@@ -59,7 +59,7 @@ The Parameters are :
 
 1. A object to custom cClock including available options which are listed below. A null object means default options.
 
-2. cClock's class name, needed to be string.
+2. cClock's class name, should be string.
 
 3. Optional, a object to make the cClock at including time. Also can be `true` to make it at default time which is 10 : 08 : 30.
 

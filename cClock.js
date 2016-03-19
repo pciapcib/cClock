@@ -1,5 +1,5 @@
 /*!
- * cClock.js 1.1.2
+ * cClock.js 1.2.0
  *
  * https://github.com/pciapcib/cClock
  *
