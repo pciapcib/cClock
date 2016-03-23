@@ -24,7 +24,9 @@ a:hover {
 }
 
 #page2 .cell {
-    align-items: flex-start;
+    -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+            align-items: flex-start;
 }
 
 #page2 p,
@@ -37,9 +39,15 @@ a:hover {
 }
 
 #page3 .cell {
-    flex-direction: column;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
 
-    justify-content: center;
+    -webkit-justify-content: center;
+
+        -ms-flex-pack: center;
+
+            justify-content: center;
 }
 
 #page4 a {
