@@ -97,18 +97,16 @@ a:hover {
 .page {
     display: -webkit-flex;
     display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
+    display:         flex;
             flex-direction: column;
 
     height: 100%;
     padding: 10%;
 
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
     -webkit-align-items: center;
-
-        -ms-flex-align: center;
-
+    -ms-flex-align: center;
             align-items: center;
 }
 
@@ -116,15 +114,13 @@ a:hover {
 .col {
     display: -webkit-flex;
     display: -ms-flexbox;
-    display: flex;
+    display:         flex;
 
     -webkit-flex: 1;
-
         -ms-flex: 1;
-
             flex: 1;
     -webkit-align-items: center;
-        -ms-flex-align: center;
+    -ms-flex-align: center;
             align-items: center;
 }
 
@@ -134,35 +130,32 @@ a:hover {
 }
 
 .col {
+            flex-direction: column;
+
     -webkit-flex-direction: column;
         -ms-flex-direction: column;
-            flex-direction: column;
 }
 
 .cell {
     display: -webkit-flex;
     display: -ms-flexbox;
-    display: flex;
+    display:         flex;
 
     -webkit-flex: 1;
-
         -ms-flex: 1;
-
             flex: 1;
     -webkit-align-items: center;
-        -ms-flex-align: center;
+    -ms-flex-align: center;
             align-items: center;
 }
 
 .col .cell {
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
             flex-direction: column;
 
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
     -webkit-justify-content: center;
-
-        -ms-flex-pack: center;
-
+    -ms-flex-pack: center;
             justify-content: center;
 }
 
@@ -182,12 +175,10 @@ a:hover {
 #page2 .icon {
     display: -webkit-flex;
     display: -ms-flexbox;
-    display: flex;
+    display:         flex;
 
     -webkit-justify-content: center;
-
-        -ms-flex-pack: center;
-
+    -ms-flex-pack: center;
             justify-content: center;
     -webkit-flex: 1;
         -ms-flex: 1;
@@ -228,9 +219,7 @@ a:hover {
     text-align: justify;
 
     -webkit-flex: 2;
-
         -ms-flex: 2;
-
             flex: 2;
 }
 
@@ -261,10 +250,10 @@ a:hover {
 }
 
 .github:hover {
-    border-color: #ccc;
-    background: linear-gradient(to bottom, #eee, #ddd);
     color: #333;
     border-width: 1px;
+    border-color: #ccc;
+    background: linear-gradient(to bottom, #eee, #ddd);
 }
 
 .github:active {
@@ -327,7 +316,7 @@ a:hover {
 
 #page5 .cell {
     -webkit-align-items: flex-start;
-        -ms-flex-align: start;
+    -ms-flex-align: start;
             align-items: flex-start;
 }
 
@@ -410,11 +399,12 @@ a:hover {
     }
 
     #page2 .row {
-        -webkit-flex-direction: column;
-            -ms-flex-direction: column;
                 flex-direction: column;
 
         padding-right: 10%;
+
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
     }
 
     #page2 .row .cell {
@@ -444,11 +434,12 @@ a:hover {
     }
 
     #page2 .row {
-        -webkit-flex-direction: column;
-            -ms-flex-direction: column;
                 flex-direction: column;
 
         padding-right: 6%;
+
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
     }
 
     .github {
@@ -558,15 +549,13 @@ a:hover {
     #page2 .info {
         display: -webkit-flex;
         display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: column;
-            -ms-flex-direction: column;
+        display:         flex;
                 flex-direction: column;
 
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
         -webkit-align-items: center;
-
-            -ms-flex-align: center;
-
+        -ms-flex-align: center;
                 align-items: center;
     }
 }
@@ -580,11 +569,12 @@ a:hover {
     }
 
     #page2 .row {
-        -webkit-flex-direction: column;
-            -ms-flex-direction: column;
                 flex-direction: column;
 
         padding-right: 8%;
+
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
     }
 
     #page2 .row .cell {

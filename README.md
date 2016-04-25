@@ -13,16 +13,22 @@ A flat and dynamic clock by Canvas
 * [使用说明](#使用说明)
 * [配置参数](#配置参数)
 * [注意事项](#注意事项)
-* [其它](#其它)
+* [开源协议](#开源协议)
 
 ##Index
 
 ###Quick start
 
-The following file should be included.
+###Install by npm
+
+```
+npm install cclock
+```
+
+###Include files
 
 ```html
-<script src="scripts/cClock.min.js"></script>
+<script src="cClock.min.js"></script>
 ```
 
 Apply cClock and call the function as simple as
@@ -103,15 +109,7 @@ The Parameters are :
 
 ###License
 
-The MIT License (MIT)
-
-Copyright (c) 2016 Shen Ting
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+[MIT License](https://opensource.org/licenses/MIT)
 
 --------
 
@@ -119,10 +117,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ###使用说明
 
-引入下列文件，
+###通过 npm 安装
+
+```
+npm install jzoom
+```
+
+###引入文件
 
 ```html
-<script src="scripts/cClock.min.js"></script>
+<script src="cClock.min.js"></script>
 ```
 
 添加`<canvas>`标签，设置宽高，并在标签内部添加一些描述，
@@ -203,12 +207,6 @@ cClock({
 
 6. 如果把小时刻度设置为不显示，那么分钟刻度也不会显示。
 
-###其它
+##开源协议
 
-1. 制作这个时钟的原因是我在看红皮书《JavaScript高级程序设计》时，在“使用 Canvas 绘图”这一章看到了作为示例的时钟。感叹Canvas的神奇之时，有了让这个时钟转动起来的想法。
-
-2. 开发过程中，看着代码逐渐从稀少到臃肿，从清晰到混乱，一遍又一遍地重构、剥离函数，增长了一些这方面的经验。
-
-3. 复习了不少高中数学的知识。。。
-
-4. 未来有时间精力的情况下，会继续维护开发这款时钟，提供更多效果。
+基于 [MIT 协议](https://opensource.org/licenses/MIT)。

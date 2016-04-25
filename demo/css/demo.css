@@ -23,9 +23,15 @@ a:hover {
     font-size: 16px;
 }
 
+.code {
+    padding: 8px 10px;
+
+    background-color: #fff;
+}
+
 #page2 .cell {
     -webkit-align-items: flex-start;
-        -ms-flex-align: start;
+    -ms-flex-align: start;
             align-items: flex-start;
 }
 
@@ -39,14 +45,12 @@ a:hover {
 }
 
 #page3 .cell {
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
             flex-direction: column;
 
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
     -webkit-justify-content: center;
-
-        -ms-flex-pack: center;
-
+    -ms-flex-pack: center;
             justify-content: center;
 }
 
