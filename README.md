@@ -19,10 +19,14 @@ A flat and dynamic clock by Canvas
 
 ###Quick start
 
-###Install by npm
+###Install by npm or bower
 
 ```
 npm install cclock
+```
+
+```
+bower install cclock
 ```
 
 ###Include files
@@ -71,27 +75,27 @@ The Parameters are :
 
 | Option | Type | Default | Description |
 |:---:|:---:|:---:|:---:|
-| hourLength | Number | 0.65 | The length of hour hand. |
-| hourWidth | Number | 2 | The width of hour hand. |
-| minuteLength | Number | 0.85 | The length of minute hand. |
-| minuteWidth | Number | 2 | The width of minute hand. |
-| secondLength | Number | 0.8 | The length of second hand. |
-| secondWidth | Number | 2 | The width of second hand. |
-| handColor | String | "#000" | The color of hands. |
-| handStyle | String | "butt" | The style of hands. Only "round" and "square" are permitted. |
-| centerRadius | Number | 5 | The radius of center circle. |
-| hourBackLength | Number | 0.2 | The length of back hour hand. |
-| minuteBackLength | Number | 0.2 | The length of back minute hand. |
-| secondBackLength | Number | 0.2 | The length of back second hand. |
-| borderWidth | Number | 2 | The width of border. |
-| borderColor | String | "#000" | The color of border. |
-| padding | Number | 0 | The distance between border and dial. |
-| bgColor | String | "#fff" | The backgound color of clock. |
-| hourDialWidth | Number | 2 | The width of hour dial.  |
-| hourDialLength | Number | 0.15 | The length of hour dial. |
-| minuteDialWidth | Number | 2 | The width of minute dial. |
-| minuteDialLength | Number | 0.08 | The length of minute dial. |
-| dialColor | String | "#000" | The color of dial. |
+| hourLength | number | 0.65 | The length of hour hand. |
+| hourWidth | number | 2 | The width of hour hand. |
+| minuteLength | number | 0.85 | The length of minute hand. |
+| minuteWidth | number | 2 | The width of minute hand. |
+| secondLength | number | 0.8 | The length of second hand. |
+| secondWidth | number | 2 | The width of second hand. |
+| handColor | string | "#000" | The color of hands. |
+| handStyle | string | "butt" | The style of hands. Only "round" and "square" are permitted. |
+| centerRadius | number | 5 | The radius of center circle. |
+| hourBackLength | number | 0.2 | The length of back hour hand. |
+| minuteBackLength | number | 0.2 | The length of back minute hand. |
+| secondBackLength | number | 0.2 | The length of back second hand. |
+| borderWidth | number | 2 | The width of border. |
+| borderColor | string | "#000" | The color of border. |
+| padding | number | 0 | The distance between border and dial. |
+| bgColor | string | "#fff" | The backgound color of clock. |
+| hourDialWidth | number | 2 | The width of hour dial.  |
+| hourDialLength | number | 0.15 | The length of hour dial. |
+| minuteDialWidth | number | 2 | The width of minute dial. |
+| minuteDialLength | number | 0.08 | The length of minute dial. |
+| dialColor | string | "#000" | The color of dial. |
 
 ###Attentions
 
@@ -117,10 +121,14 @@ The Parameters are :
 
 ###使用说明
 
-###通过 npm 安装
+###通过 npm 或 bower 安装
 
 ```
 npm install jzoom
+```
+
+```
+bower install cclock
 ```
 
 ###引入文件
@@ -171,27 +179,27 @@ cClock({
 
 | 选项 | 类型 | 默认值 | 描述 |
 |:---:|:---:|:---:|:---:|
-| hourLength | Number | 0.65 | 时针的长度 |
-| hourWidth | Number | 2 | 时针的宽度 |
-| minuteLength | Number | 0.85 | 分针的长度 |
-| minuteWidth | Number | 2 | 分针的宽度 |
-| secondLength | Number | 0.8 | 秒针的长度 |
-| secondWidth | Number | 2 | 秒针的宽度 |
-| handColor | String | "#000" | 指针的颜色 |
-| handStyle | String | "butt" | 指针的类型，还可设置为"round"、"square" |
-| centerRadius | Number | 5 | 中心圆的半径 |
-| hourBackLength | Number | 0.2 | 时针后部的长度 |
-| minuteBackLength | Number | 0.2 | 分针后部的长度 |
-| secondBackLength | Number | 0.2 | 秒针后部的长度 |
-| borderWidth | Number | 2 | 边框的宽度 |
-| borderColor | String | "#000" | 边框的颜色 |
-| padding | Number | 0 | 边框和刻度之间的内边距 |
-| bgColor | String | "#fff" | 时钟的背景色 |
-| hourDialWidth | Number | 2 | 小时刻度的宽度  |
-| hourDialLength | Number | 0.15 | 小时刻度的长度 |
-| minuteDialWidth | Number | 2 | 分钟刻度的宽度 |
-| minuteDialLength | Number | 0.08 | 分钟刻度的长度 |
-| dialColor | String | "#000" | 刻度的颜色 |
+| hourLength | number | 0.65 | 时针的长度 |
+| hourWidth | number | 2 | 时针的宽度 |
+| minuteLength | number | 0.85 | 分针的长度 |
+| minuteWidth | number | 2 | 分针的宽度 |
+| secondLength | number | 0.8 | 秒针的长度 |
+| secondWidth | number | 2 | 秒针的宽度 |
+| handColor | string | "#000" | 指针的颜色 |
+| handStyle | string | "butt" | 指针的类型，还可设置为"round"、"square" |
+| centerRadius | number | 5 | 中心圆的半径 |
+| hourBackLength | number | 0.2 | 时针后部的长度 |
+| minuteBackLength | number | 0.2 | 分针后部的长度 |
+| secondBackLength | number | 0.2 | 秒针后部的长度 |
+| borderWidth | number | 2 | 边框的宽度 |
+| borderColor | string | "#000" | 边框的颜色 |
+| padding | number | 0 | 边框和刻度之间的内边距 |
+| bgColor | string | "#fff" | 时钟的背景色 |
+| hourDialWidth | number | 2 | 小时刻度的宽度  |
+| hourDialLength | number | 0.15 | 小时刻度的长度 |
+| minuteDialWidth | number | 2 | 分钟刻度的宽度 |
+| minuteDialLength | number | 0.08 | 分钟刻度的长度 |
+| dialColor | string | "#000" | 刻度的颜色 |
 
 ###注意事项
 

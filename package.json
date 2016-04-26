@@ -1,6 +1,6 @@
 {
   "name": "cclock",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A flat and dynamic clock by Canvas",
   "main": "cClock.js",
   "scripts": {
@@ -14,9 +14,9 @@
     "canvas",
     "clock",
     "animation",
-    "effect",
+    "effect"
   ],
-  "author": "pciapcib",
+  "author": "pciapcib <pciapcib@163.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/pciapcib/cClock/issues"

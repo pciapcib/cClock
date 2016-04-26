@@ -1,0 +1,24 @@
+{
+  "name": "cclock",
+  "description": "A flat and dynamic clock by Canvas",
+  "main": "cClock.js",
+  "authors": [
+    "pciapcib <pciapcib@163.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "canvas",
+    "clock",
+    "animation",
+    "effect"
+  ],
+  "homepage": "https://github.com/pciapcib/cClock",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
