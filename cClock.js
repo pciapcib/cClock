@@ -21,24 +21,24 @@ function cClock(options, className, showTime) {
         minuteWidth: 2,
         secondLength: 0.8,
         secondWidth: 2,
-        handColor: "#000",
-        handStyle: "butt",
+        handColor: '#000',
+        handStyle: 'butt',
         centerRadius: 5,
         hourBackLength: 0.2,
         minuteBackLength: 0.2,
         secondBackLength: 0.2,
         borderWidth: 2,
-        borderColor: "#000",
+        borderColor: '#000',
         padding: 0,
-        bgColor: "#fff",
+        bgColor: '#fff',
         hourDialWidth: 2,
         hourDialLength: 0.15,
         minuteDialWidth: 2,
         minuteDialLength: 0.08,
-        dialColor: "#000"
+        dialColor: '#000'
     };
 
-    var context = canvas.getContext("2d");
+    var context = canvas.getContext('2d');
 
     var canvasWidth = canvas.offsetWidth;
     context.translate(canvasWidth / 2, canvasWidth / 2);
@@ -238,7 +238,7 @@ function cClock(options, className, showTime) {
             if (options.centerRadius || options.centerRadius === undefined) {
                 context.beginPath();
                 context.arc(0, 0, options.centerRadius || defaultOptions.centerRadius, 0, twoPi, false);
-                context.fillStyle = options.handColor || "#000";
+                context.fillStyle = options.handColor || '#000';
                 context.fill();
             }
         }
@@ -260,7 +260,7 @@ function cClock(options, className, showTime) {
                 context.lineTo(hourDialEnd[0], hourDialEnd[1]);
             }
 
-            context.lineCap = "butt";
+            context.lineCap = 'butt';
             context.lineWidth = options.hourDialWidth || defaultOptions.hourDialWidth;
             context.strokeStyle = options.dialColor || defaultOptions.dialColor;
             context.stroke();
@@ -343,19 +343,19 @@ function cClock(options, className, showTime) {
 
             flag++;
         } else {
-            if (timeTest.second == 59) {
+            if (timeTest.second === 59) {
                 timeTest.second = 0;
                 timeTest.minute++;
             } else {
                 timeTest.second++;
             }
 
-            if (timeTest.minute == 60) {
+            if (timeTest.minute === 60) {
                 timeTest.minute = 0;
                 timeTest.hour++;
             }
 
-            if (timeTest.hour == 24) {
+            if (timeTest.hour === 24) {
                 timeTest.hour = 0;
             }
         }

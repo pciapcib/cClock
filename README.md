@@ -21,18 +21,18 @@ A flat and dynamic clock by Canvas
 
 ###Install by npm or bower
 
-```
+```bash
 npm install cclock
 ```
 
-```
+```bash
 bower install cclock
 ```
 
 ###Include files
 
 ```html
-<script src="cClock.min.js"></script>
+<script src="cClock.js"></script>
 ```
 
 Apply cClock and call the function as simple as
@@ -134,7 +134,7 @@ bower install cclock
 ###引入文件
 
 ```html
-<script src="cClock.min.js"></script>
+<script src="cClock.js"></script>
 ```
 
 添加`<canvas>`标签，设置宽高，并在标签内部添加一些描述，
