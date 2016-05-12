@@ -22,11 +22,11 @@ A flat and dynamic clock by Canvas
 ###Install by npm or bower
 
 ```bash
-npm install cclock
+$ npm install cclock
 ```
 
 ```bash
-bower install cclock
+$ bower install cclock
 ```
 
 ###Include files
@@ -38,7 +38,7 @@ bower install cclock
 Apply cClock and call the function as simple as
 
 ```html
-<canvas class="cClock" width="400" height="400">A flat and dynamic clock.</canvas>
+<canvas data-cClock="cClock" width="400" height="400">A flat and dynamic clock.</canvas>
 ```
 
 ```javascript
@@ -52,13 +52,14 @@ All done !
 The cClock has awesome and customizable feature.
 
 ```javascript
-cClock(options, className, showTime);
+cClock(options, dataName, showTime);
+
 //or
 cClock({
     option: value,
     option2: value2,
     ...
-}, className, {
+}, dataName, {
     hour: hour,
     minute: minute,
     second: second
@@ -69,7 +70,7 @@ The Parameters are :
 
 1. A object to custom cClock including available options which are listed below. A null object means default options.
 
-2. cClock's class name, should be String.
+2. cClock's data-cClock attribute, should be String.
 
 3. Optional, a object to make the cClock at including time. Also can be `true` to make it at default time which is 10 : 08 : 30.
 
@@ -123,12 +124,12 @@ The Parameters are :
 
 ###通过 npm 或 bower 安装
 
-```
-npm install jzoom
+```bash
+$ npm install jzoom
 ```
 
-```
-bower install cclock
+```bash
+$ bower install cclock
 ```
 
 ###引入文件
@@ -137,10 +138,10 @@ bower install cclock
 <script src="cClock.js"></script>
 ```
 
-添加`<canvas>`标签，设置宽高，并在标签内部添加一些描述，
+添加 `<canvas>` 标签，设置宽高，并在标签内部添加一些描述，
 
 ```html
-<canvas class="cClock" width="400" height="400">A flat and dynamic clock.</canvas>
+<canvas data-cClock="cClock" width="400" height="400">A flat and dynamic clock.</canvas>
 ```
 
 运行函数，
@@ -153,16 +154,17 @@ cClock({}, "cClock");
 
 ###配置选项
 
-cClock拥有丰富的自定义功能。
+cClock 拥有丰富的自定义功能。
 
 ```javascript
-cClock(options, className, showTime);
+cClock(options, dataName, showTime);
+
 //或
 cClock({
     option: value,
     option2: value2,
     ...
-}, className, {
+}, dataName, {
     hour: hour,
     minute: minute,
     second: second
@@ -171,11 +173,11 @@ cClock({
 
 参数分别为：
 
-1. 自定义cClock外观的配置对象，可选参数列于下表，空对象表示默认效果。
+1. 自定义 cClock 外观的配置对象，可选参数列于下表，空对象表示默认效果。
 
-2. cClock的类名，String类型。
+2. cClock 标签的 data-cClock 属性， String 类型。
 
-3. 可选，传入一个时间对象，可使cClock静止在设置的时间，也可传入`true`使之静止在默认时间——10 : 08 : 30。
+3. 可选，传入一个时间对象，可使 cClock 静止在设置的时间，也可传入 `true` 使之静止在默认时间 —— 10 : 08 : 30。
 
 | 选项 | 类型 | 默认值 | 描述 |
 |:---:|:---:|:---:|:---:|
@@ -203,15 +205,15 @@ cClock({
 
 ###注意事项
 
-1. 时钟的大小取决于`<canvas>`的宽高。
+1. 时钟的大小取决于 `<canvas>` 的宽高。
 
 2. 必须要给该标签设置宽高，并且保证是一个正方形，也就是宽高要相等。
 
 3. 一些与长度有关的选项需设置为小数，与时钟半径有关。
 
-4. 如果选项的长度或宽度设置为0，则表示不显示该选项有关的内容。
+4. 如果选项的长度或宽度设置为 0 ，则表示不显示该选项有关的内容。
 
-5. 例如，如果设置"secondLength: 0"，就表示不需要秒针。
+5. 例如，如果设置 "secondLength: 0" ，就表示不需要秒针。
 
 6. 如果把小时刻度设置为不显示，那么分钟刻度也不会显示。
 

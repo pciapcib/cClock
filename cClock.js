@@ -1,5 +1,5 @@
 /*!
- * cClock.js 1.2.2
+ * cClock.js 1.3.0
  *
  * https://github.com/pciapcib/cClock
  *
@@ -7,10 +7,10 @@
  *
  * Copyright (c) 2016 Ting Shen
  */
-function cClock(options, className, showTime) {
+function cClock(options, dataName, showTime) {
     'use strict';
 
-    var canvas = document.getElementsByClassName(className)[0];
+    var canvas = document.querySelector('[data-cClock=' + dataName + ']');
 
     if (!canvas) {
         return false;
