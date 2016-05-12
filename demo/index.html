@@ -14,7 +14,7 @@
     <section class="page" id="page1">
         <div class="col">
             <div class="cell">
-                <canvas data-cClock="cClock" width="300" height="300">A flat and dynamic clock.</canvas>
+                <canvas id="cClock" width="300" height="300">A flat and dynamic clock.</canvas>
                 <h2>cClock</h2>
                 <a href="https://github.com/pciapcib/cClock" target="_blank" class="github" title="Github"> <i class="iconfont icon-star"></i>
                     Star
@@ -44,15 +44,15 @@
         <h2>展示</h2>
         <div class="row">
             <div class="cell">
-                <canvas data-cClock="cClock1" width="250" height="250">A flat and dynamic clock.</canvas>
+                <canvas id="cClock1" width="250" height="250">A flat and dynamic clock.</canvas>
                 <h3>默认</h3>
             </div>
             <div class="cell">
-                <canvas data-cClock="cClock2" width="250" height="250">A flat and dynamic clock.</canvas>
+                <canvas id="cClock2" width="250" height="250">A flat and dynamic clock.</canvas>
                 <h3>简约</h3>
             </div>
             <div class="cell">
-                <canvas data-cClock="cClock3" width="250" height="250">A flat and dynamic clock.</canvas>
+                <canvas id="cClock3" width="250" height="250">A flat and dynamic clock.</canvas>
                 <h3>MUJI</h3>
             </div>
         </div>
@@ -96,12 +96,12 @@
                     minuteDialWidth: 0,
                     dialColor: "#4d4d4d"
                 },
-                dataName: "cClock"
+                id: "cClock"
             });
 
             cClock({
                 options: {},
-                dataName: "cClock1",
+                id: "cClock1",
                 showTime: true
             });
 
@@ -122,7 +122,7 @@
                     hourDialWidth: 4,
                     minuteDialLength: 0
                 },
-                dataName: "cClock2",
+                id: "cClock2",
                 showTime: true
             });
 
@@ -150,7 +150,7 @@
                     minuteDialLength: 0.08,
                     dialColor: "#1f1d1e"
                 },
-                dataName: "cClock3",
+                id: "cClock3",
                 showTime: true
             });
         })();

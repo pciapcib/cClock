@@ -38,7 +38,7 @@ $ bower install cclock
 Apply cClock and call the function as simple as
 
 ```html
-<canvas data-cClock="cClock" width="400" height="400">A flat and dynamic clock.</canvas>
+<canvas id="cClock" width="400" height="400">A flat and dynamic clock.</canvas>
 ```
 
 ```javascript
@@ -52,14 +52,14 @@ All done !
 The cClock has awesome and customizable feature.
 
 ```javascript
-cClock(options, dataName, showTime);
+cClock(options, id, showTime);
 
 //or
 cClock({
     option: value,
     option2: value2,
     ...
-}, dataName, {
+}, id, {
     hour: hour,
     minute: minute,
     second: second
@@ -70,7 +70,7 @@ The Parameters are :
 
 1. A object to custom cClock including available options which are listed below. A null object means default options.
 
-2. cClock's data-cClock attribute, should be String.
+2. cClock's id, should be String.
 
 3. Optional, a object to make the cClock at including time. Also can be `true` to make it at default time which is 10 : 08 : 30.
 
@@ -157,14 +157,14 @@ cClock({}, "cClock");
 cClock 拥有丰富的自定义功能。
 
 ```javascript
-cClock(options, dataName, showTime);
+cClock(options, id, showTime);
 
 //或
 cClock({
     option: value,
     option2: value2,
     ...
-}, dataName, {
+}, id, {
     hour: hour,
     minute: minute,
     second: second
@@ -175,7 +175,7 @@ cClock({
 
 1. 自定义 cClock 外观的配置对象，可选参数列于下表，空对象表示默认效果。
 
-2. cClock 标签的 data-cClock 属性， String 类型。
+2. cClock 标签的 id 属性， String 类型。
 
 3. 可选，传入一个时间对象，可使 cClock 静止在设置的时间，也可传入 `true` 使之静止在默认时间 —— 10 : 08 : 30。
 

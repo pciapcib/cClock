@@ -12,7 +12,7 @@
 function cClock(cClockObj) {
     'use strict';
 
-    var canvas = document.querySelector('[data-cClock=' + cClockObj.dataName + ']');
+    var canvas = document.querySelector('#' + cClockObj.id);
 
     if (!canvas) {
         return false;
