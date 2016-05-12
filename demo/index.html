@@ -81,63 +81,78 @@
     <script>
         (function() {
             cClock({
-                hourLength: 0.6,
-                hourWidth: 4,
-                minuteLength: 0.8,
-                minuteWidth: 3,
-                secondLength: 0.75,
-                handColor: "#4d4d4d",
-                centerRadius: 5,
-                borderWidth: 0,
-                bgColor: "#f2f2f2",
-                hourDialWidth: 4,
-                hourDialLength: 0.13,
-                minuteDialWidth: 0,
-                dialColor: "#4d4d4d"
-            }, "cClock");
-
-            cClock({}, "cClock1", true);
-
-            cClock({
-                hourLength: 0.62,
-                hourWidth: 4,
-                minuteLength: 0.8,
-                minuteWidth: 3,
-                secondLength: 0,
-                handStyle: "butt",
-                hourBackLength: 0.15,
-                minuteBackLength: 0.2,
-                borderWidth: 18,
-                borderColor: "#c9af85",
-                padding: 10,
-                bgColor: "#ebeff0",
-                hourDialWidth: 4,
-                minuteDialLength: 0,
-            }, "cClock2", true);
+                options: {
+                    hourLength: 0.6,
+                    hourWidth: 4,
+                    minuteLength: 0.8,
+                    minuteWidth: 3,
+                    secondLength: 0.75,
+                    handColor: "#4d4d4d",
+                    centerRadius: 5,
+                    borderWidth: 0,
+                    bgColor: "#f2f2f2",
+                    hourDialWidth: 4,
+                    hourDialLength: 0.13,
+                    minuteDialWidth: 0,
+                    dialColor: "#4d4d4d"
+                },
+                dataName: "cClock"
+            });
 
             cClock({
-                hourLength: 0.55,
-                hourWidth: 8,
-                minuteLength: 0.88,
-                minuteWidth: 5,
-                secondLength: 0.88,
-                secondWidth: 3,
-                handColor: "#272526",
-                handStyle: "butt",
-                centerRadius: 0,
-                hourBackLength: 0.2,
-                minuteBackLength: 0.15,
-                secondBackLength: 0.2,
-                borderWidth: 20,
-                borderColor: "#454449",
-                padding: 10,
-                bgColor: "#ebeff0",
-                hourDialWidth: 5,
-                hourDialLength: 0.2,
-                minuteDialWidth: 2,
-                minuteDialLength: 0.08,
-                dialColor: "#1f1d1e"
-            }, "cClock3", true);
+                options: {},
+                dataName: "cClock1",
+                showTime: true
+            });
+
+            cClock({
+                options: {
+                    hourLength: 0.62,
+                    hourWidth: 4,
+                    minuteLength: 0.8,
+                    minuteWidth: 3,
+                    secondLength: 0,
+                    handStyle: "butt",
+                    hourBackLength: 0.15,
+                    minuteBackLength: 0.2,
+                    borderWidth: 18,
+                    borderColor: "#c9af85",
+                    padding: 10,
+                    bgColor: "#ebeff0",
+                    hourDialWidth: 4,
+                    minuteDialLength: 0
+                },
+                dataName: "cClock2",
+                showTime: true
+            });
+
+            cClock({
+                options: {
+                    hourLength: 0.55,
+                    hourWidth: 8,
+                    minuteLength: 0.88,
+                    minuteWidth: 5,
+                    secondLength: 0.88,
+                    secondWidth: 3,
+                    handColor: "#272526",
+                    handStyle: "butt",
+                    centerRadius: 0,
+                    hourBackLength: 0.2,
+                    minuteBackLength: 0.15,
+                    secondBackLength: 0.2,
+                    borderWidth: 20,
+                    borderColor: "#454449",
+                    padding: 10,
+                    bgColor: "#ebeff0",
+                    hourDialWidth: 5,
+                    hourDialLength: 0.2,
+                    minuteDialWidth: 2,
+                    minuteDialLength: 0.08,
+                    dialColor: "#1f1d1e"
+                },
+                dataName: "cClock3",
+                showTime: true
+            });
         })();
     </script>
 </body>

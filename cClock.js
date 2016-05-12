@@ -1,5 +1,7 @@
 /*!
- * cClock.js 1.3.0
+ * cClock.js
+ *
+ * Version 1.3.0
  *
  * https://github.com/pciapcib/cClock
  *
@@ -7,14 +9,17 @@
  *
  * Copyright (c) 2016 Ting Shen
  */
-function cClock(options, dataName, showTime) {
+function cClock(cClockObj) {
     'use strict';
 
-    var canvas = document.querySelector('[data-cClock=' + dataName + ']');
+    var canvas = document.querySelector('[data-cClock=' + cClockObj.dataName + ']');
 
     if (!canvas) {
         return false;
     }
+
+    var options = cClockObj.options,
+        showTime = cClockObj.showTime;
 
     var defaultOptions = {
         hourLength: 0.65,
