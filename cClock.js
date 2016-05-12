@@ -1,5 +1,5 @@
 /*!
- * cClock.js 1.2.1
+ * cClock.js 1.2.2
  *
  * https://github.com/pciapcib/cClock
  *
@@ -8,6 +8,8 @@
  * Copyright (c) 2016 Ting Shen
  */
 function cClock(options, className, showTime) {
+    'use strict';
+
     var canvas = document.getElementsByClassName(className)[0];
 
     if (!canvas) {
@@ -38,12 +40,18 @@ function cClock(options, className, showTime) {
         dialColor: '#000'
     };
 
+    for (var option in defaultOptions) {
+        if (!options.hasOwnProperty(option)) {
+            options[option] = defaultOptions[option];
+        }
+    }
+
     var context = canvas.getContext('2d');
 
     var canvasWidth = canvas.offsetWidth;
     context.translate(canvasWidth / 2, canvasWidth / 2);
 
-    var width = canvasWidth - (options.borderWidth || defaultOptions.borderWidth);
+    var width = canvasWidth - options.borderWidth;
 
     var twoPi = 2 * Math.PI,
         clockLength = calcLength(width),
@@ -69,26 +77,17 @@ function cClock(options, className, showTime) {
         var length = {
             radius: radius,
 
-            hourLength: radius * (options.hourLength || defaultOptions.hourLength),
-            minuteLength: radius * (options.minuteLength || defaultOptions.minuteLength)
+            hourLength: radius * options.hourLength,
+            minuteLength: radius * options.minuteLength,
+            secondLength: radius * options.secondLength,
+
+            hourBackLength: radius * options.hourBackLength,
+            minuteBackLength: radius * options.minuteBackLength,
+            secondBackLength: radius * (options.secondLength === 0 ? 0 : options.secondBackLength),
+
+            hourDialLength: radius * (1 - options.hourDialLength),
+            minuteDialLength: radius * (1 - options.minuteDialLength)
         };
-
-        // Format: key = condition1 ? value1 : (condition2 ? value2 : value3 );
-        // Meaning: if (condition1) {
-        //     key = value1;
-        // } else if (condition2) {
-        //     key = value2;
-        // } else {
-        //     key = value3;
-        // }
-        length.secondLength = options.secondLength ? radius * options.secondLength : (options.secondLength === 0 ? 0 : radius * defaultOptions.secondLength);
-
-        length.hourBackLength = options.hourBackLength ? radius * options.hourBackLength : (options.hourBackLength === 0 ? 0 : radius * defaultOptions.hourBackLength);
-        length.minuteBackLength = options.minuteBackLength ? radius * options.minuteBackLength : (options.minuteBackLength === 0 ? 0 : radius * defaultOptions.minuteBackLength);
-        length.secondBackLength = options.secondLength === 0 ? 0 : (options.secondBackLength ? radius * options.secondBackLength : (options.secondBackLength === 0 ? 0 : radius * defaultOptions.secondBackLength));
-
-        length.hourDialLength = options.hourDialLength ? radius * (1 - options.hourDialLength) : (options.hourDialLength === 0 ? 0 : radius * (1 - defaultOptions.hourDialLength));
-        length.minuteDialLength = options.minuteDialLength ? radius * (1 - options.minuteDialLength) : (options.minuteDialLength === 0 ? 0 : radius * (1 - defaultOptions.minuteDialLength));
 
         return length;
     }
@@ -173,8 +172,8 @@ function cClock(options, className, showTime) {
         // 1/4 means rotating the coordinate axes 90 degrees
         var radian = (time / 60 + 1 / 4) * twoPi + offsetR;
 
-        var x = -Math.round(handLenth * Math.cos(radian));
-        var y = -Math.round(handLenth * Math.sin(radian));
+        var x = -handLenth * Math.cos(radian);
+        var y = -handLenth * Math.sin(radian);
 
         return [x, y];
 
@@ -210,7 +209,7 @@ function cClock(options, className, showTime) {
 
         drawCircle(clockLength.radius);
 
-        if (!(options.hourDialWidth === 0 || options.hourDialLength === 0)) {
+        if (options.hourDialWidth && options.hourDialLength) {
             drawDial();
         }
 
@@ -226,19 +225,19 @@ function cClock(options, className, showTime) {
 
             context.arc(0, 0, radius, 0, twoPi, false);
 
-            if (options.borderWidth || options.borderWidth === undefined) {
-                context.lineWidth = options.borderWidth || defaultOptions.borderWidth;
-                context.strokeStyle = options.borderColor || defaultOptions.borderColor;
+            if (options.borderWidth) {
+                context.lineWidth = options.borderWidth;
+                context.strokeStyle = options.borderColor;
                 context.stroke();
             }
 
-            context.fillStyle = options.bgColor || defaultOptions.bgColor;
+            context.fillStyle = options.bgColor;
             context.fill();
 
-            if (options.centerRadius || options.centerRadius === undefined) {
+            if (options.centerRadius) {
                 context.beginPath();
-                context.arc(0, 0, options.centerRadius || defaultOptions.centerRadius, 0, twoPi, false);
-                context.fillStyle = options.handColor || '#000';
+                context.arc(0, 0, options.centerRadius, 0, twoPi, false);
+                context.fillStyle = options.handColor;
                 context.fill();
             }
         }
@@ -253,19 +252,19 @@ function cClock(options, className, showTime) {
             var i, hourDialStart, hourDialEnd;
 
             for (i = 0; i < 60; i += 5) {
-                hourDialStart = calcCoordinate(i, clockLength.hourDialLength - (options.padding || defaultOptions.padding));
-                hourDialEnd = calcCoordinate(i, clockLength.radius - (options.padding || defaultOptions.padding));
+                hourDialStart = calcCoordinate(i, clockLength.hourDialLength - options.padding);
+                hourDialEnd = calcCoordinate(i, clockLength.radius - options.padding);
 
                 context.moveTo(hourDialStart[0], hourDialStart[1]);
                 context.lineTo(hourDialEnd[0], hourDialEnd[1]);
             }
 
             context.lineCap = 'butt';
-            context.lineWidth = options.hourDialWidth || defaultOptions.hourDialWidth;
-            context.strokeStyle = options.dialColor || defaultOptions.dialColor;
+            context.lineWidth = options.hourDialWidth;
+            context.strokeStyle = options.dialColor;
             context.stroke();
 
-            if (!(options.minuteDialWidth === 0 || options.minuteDialLength === 0)) {
+            if (options.minuteDialWidth && options.minuteDialLength) {
                 drawMinuteDial();
             }
 
@@ -277,14 +276,14 @@ function cClock(options, className, showTime) {
                 var minuteDialStart, minuteDialEnd;
 
                 for (i = 0; i < 60; i++) {
-                    minuteDialStart = calcCoordinate(i, clockLength.minuteDialLength - (options.padding || defaultOptions.padding));
-                    minuteDialEnd = calcCoordinate(i, clockLength.radius - (options.padding || defaultOptions.padding));
+                    minuteDialStart = calcCoordinate(i, clockLength.minuteDialLength - options.padding);
+                    minuteDialEnd = calcCoordinate(i, clockLength.radius - options.padding);
 
                     context.moveTo(minuteDialStart[0], minuteDialStart[1]);
                     context.lineTo(minuteDialEnd[0], minuteDialEnd[1]);
                 }
 
-                context.lineWidth = options.minuteDialWidth || defaultOptions.minuteDialWidth;
+                context.lineWidth = options.minuteDialWidth;
                 context.stroke();
             }
 
@@ -297,25 +296,25 @@ function cClock(options, className, showTime) {
         function drawHand() {
             context.beginPath();
 
-            context.lineCap = options.handStyle || defaultOptions.handStyle;
-            context.strokeStyle = options.handColor || defaultOptions.handColor;
+            context.lineCap = options.handStyle;
+            context.strokeStyle = options.handColor;
 
             context.moveTo(-hourBackCoord[0], -hourBackCoord[1]);
             context.lineTo(hourCoord[0], hourCoord[1]);
 
-            context.lineWidth = options.hourWidth || defaultOptions.hourWidth;
+            context.lineWidth = options.hourWidth;
             context.stroke();
 
             context.moveTo(-minuteBackCoord[0], -minuteBackCoord[1]);
             context.lineTo(minuteCoord[0], minuteCoord[1]);
 
-            context.lineWidth = options.minuteWidth || defaultOptions.minuteWidth;
+            context.lineWidth = options.minuteWidth;
             context.stroke();
 
             context.moveTo(-secondBackCoord[0], -secondBackCoord[1]);
             context.lineTo(secondCoord[0], secondCoord[1]);
 
-            context.lineWidth = options.secondWidth || defaultOptions.secondWidth;
+            context.lineWidth = options.secondWidth;
             context.stroke();
         }
     }
