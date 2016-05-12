@@ -14,7 +14,7 @@
     <section class="page" id="page1">
         <div class="col">
             <div class="cell">
-                <canvas class="cClock" width="300" height="300">A flat and dynamic clock.</canvas>
+                <canvas id="cClock" width="300" height="300">A flat and dynamic clock.</canvas>
                 <h2>cClock</h2>
                 <a href="https://github.com/pciapcib/cClock" target="_blank" class="github" title="Github"> <i class="iconfont icon-star"></i>
                     Star
@@ -44,15 +44,15 @@
         <h2>展示</h2>
         <div class="row">
             <div class="cell">
-                <canvas class="cClock1" width="250" height="250">A flat and dynamic clock.</canvas>
+                <canvas id="cClock1" width="250" height="250">A flat and dynamic clock.</canvas>
                 <h3>默认</h3>
             </div>
             <div class="cell">
-                <canvas class="cClock2" width="250" height="250">A flat and dynamic clock.</canvas>
+                <canvas id="cClock2" width="250" height="250">A flat and dynamic clock.</canvas>
                 <h3>简约</h3>
             </div>
             <div class="cell">
-                <canvas class="cClock3" width="250" height="250">A flat and dynamic clock.</canvas>
+                <canvas id="cClock3" width="250" height="250">A flat and dynamic clock.</canvas>
                 <h3>MUJI</h3>
             </div>
         </div>
@@ -76,66 +76,84 @@
             Github @pciapcib
         </a>
     </section>
-    <script src="../cClock.min.js"></script>
+
+    <script src="../cClock.js"></script>
     <script>
-        cClock({
-            hourLength: 0.6,
-            hourWidth: 4,
-            minuteLength: 0.8,
-            minuteWidth: 3,
-            secondLength: 0.75,
-            handColor: "#4d4d4d",
-            centerRadius: 5,
-            borderWidth: 0,
-            bgColor: "#f2f2f2",
-            hourDialWidth: 4,
-            hourDialLength: 0.13,
-            minuteDialWidth: 0,
-            dialColor: "#4d4d4d"
-        }, "cClock");
+        (function() {
+            cClock({
+                options: {
+                    hourLength: 0.6,
+                    hourWidth: 4,
+                    minuteLength: 0.8,
+                    minuteWidth: 3,
+                    secondLength: 0.75,
+                    handColor: "#4d4d4d",
+                    centerRadius: 5,
+                    borderWidth: 0,
+                    bgColor: "#f2f2f2",
+                    hourDialWidth: 4,
+                    hourDialLength: 0.13,
+                    minuteDialWidth: 0,
+                    dialColor: "#4d4d4d"
+                },
+                id: "cClock"
+            });
 
-        cClock({}, "cClock1", true);
+            cClock({
+                options: {},
+                id: "cClock1",
+                showTime: true
+            });
 
-        cClock({
-            hourLength: 0.62,
-            hourWidth: 4,
-            minuteLength: 0.8,
-            minuteWidth: 3,
-            secondLength: 0,
-            handStyle: "butt",
-            hourBackLength: 0.15,
-            minuteBackLength: 0.2,
-            borderWidth: 18,
-            borderColor: "#c9af85",
-            padding: 10,
-            bgColor: "#ebeff0",
-            hourDialWidth: 4,
-            minuteDialLength: 0,
-        }, "cClock2", true);
+            cClock({
+                options: {
+                    hourLength: 0.62,
+                    hourWidth: 4,
+                    minuteLength: 0.8,
+                    minuteWidth: 3,
+                    secondLength: 0,
+                    handStyle: "butt",
+                    hourBackLength: 0.15,
+                    minuteBackLength: 0.2,
+                    borderWidth: 18,
+                    borderColor: "#c9af85",
+                    padding: 10,
+                    bgColor: "#ebeff0",
+                    hourDialWidth: 4,
+                    minuteDialLength: 0
+                },
+                id: "cClock2",
+                showTime: true
+            });
 
-        cClock({
-            hourLength: 0.55,
-            hourWidth: 8,
-            minuteLength: 0.88,
-            minuteWidth: 5,
-            secondLength: 0.88,
-            secondWidth: 3,
-            handColor: "#272526",
-            handStyle: "butt",
-            centerRadius: 0,
-            hourBackLength: 0.2,
-            minuteBackLength: 0.15,
-            secondBackLength: 0.2,
-            borderWidth: 20,
-            borderColor: "#454449",
-            padding: 10,
-            bgColor: "#ebeff0",
-            hourDialWidth: 5,
-            hourDialLength: 0.2,
-            minuteDialWidth: 2,
-            minuteDialLength: 0.08,
-            dialColor: "#1f1d1e"
-        }, "cClock3", true);
+            cClock({
+                options: {
+                    hourLength: 0.55,
+                    hourWidth: 8,
+                    minuteLength: 0.88,
+                    minuteWidth: 5,
+                    secondLength: 0.88,
+                    secondWidth: 3,
+                    handColor: "#272526",
+                    handStyle: "butt",
+                    centerRadius: 0,
+                    hourBackLength: 0.2,
+                    minuteBackLength: 0.15,
+                    secondBackLength: 0.2,
+                    borderWidth: 20,
+                    borderColor: "#454449",
+                    padding: 10,
+                    bgColor: "#ebeff0",
+                    hourDialWidth: 5,
+                    hourDialLength: 0.2,
+                    minuteDialWidth: 2,
+                    minuteDialLength: 0.08,
+                    dialColor: "#1f1d1e"
+                },
+                id: "cClock3",
+                showTime: true
+            });
+        })();
     </script>
 </body>
 </html>
