@@ -1,7 +1,7 @@
 /*!
  * cClock.js
  *
- * Version 1.3.0
+ * Version 1.3.1
  *
  * https://github.com/pciapcib/cClock
  *
@@ -18,7 +18,7 @@ function cClock(cClockObj) {
         return false;
     }
 
-    var options = cClockObj.options,
+    var options = cClockObj.options || {},
         showTime = cClockObj.showTime;
 
     var defaultOptions = {

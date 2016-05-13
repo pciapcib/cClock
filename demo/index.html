@@ -81,6 +81,7 @@
     <script>
         (function() {
             cClock({
+                id: "cClock",
                 options: {
                     hourLength: 0.6,
                     hourWidth: 4,
@@ -95,17 +96,16 @@
                     hourDialLength: 0.13,
                     minuteDialWidth: 0,
                     dialColor: "#4d4d4d"
-                },
-                id: "cClock"
+                }
             });
 
             cClock({
-                options: {},
                 id: "cClock1",
                 showTime: true
             });
 
             cClock({
+                id: "cClock2",
                 options: {
                     hourLength: 0.62,
                     hourWidth: 4,
@@ -122,11 +122,11 @@
                     hourDialWidth: 4,
                     minuteDialLength: 0
                 },
-                id: "cClock2",
                 showTime: true
             });
 
             cClock({
+                id: "cClock3",
                 options: {
                     hourLength: 0.55,
                     hourWidth: 8,
@@ -150,7 +150,6 @@
                     minuteDialLength: 0.08,
                     dialColor: "#1f1d1e"
                 },
-                id: "cClock3",
                 showTime: true
             });
         })();
